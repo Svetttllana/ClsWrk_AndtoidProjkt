@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ClsWrk_AndroidProjekt</string>
+    <string name="you_click_on_second_button">You Click on second button</string>
+    <string name="from_MainActivity">from MainActivity</string>
 </resources>
