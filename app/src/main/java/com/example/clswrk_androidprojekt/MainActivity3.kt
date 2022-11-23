@@ -2,13 +2,16 @@ package com.example.clswrk_androidprojekt
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.example.clswrk_androidprojekt.KotlinActivity.Companion.kotlinActivityStart
 import com.google.android.material.textfield.TextInputLayout
 
 
@@ -25,6 +28,7 @@ class MainActivity3 : AppCompatActivity() {
             startActivity(Intent("android.intent.action.OPEN_ACTIVITY1"))
         }
 
+        val image = findViewById<ImageView>(R.id.ImageView)
             val editTextLog = findViewById<EditText>(R.id.EdTextLogin)
             val editText2Passw = findViewById<EditText>(R.id.EdTextPassword)
             val btDisplayText = findViewById<Button>(R.id.displayBtn)
@@ -42,6 +46,7 @@ class MainActivity3 : AppCompatActivity() {
 
         rb1.setOnClickListener {
             if (rb1.isChecked) {
+                image.setImageResource(R.drawable.cat_inage)
                 rb2.isChecked = false
 
             } else {
@@ -52,6 +57,7 @@ class MainActivity3 : AppCompatActivity() {
         rb2.setOnClickListener {
 
             if (rb2.isChecked) {
+
                 rb1.isChecked = false
             } else {
                 rb2.isChecked = true
@@ -60,7 +66,7 @@ class MainActivity3 : AppCompatActivity() {
         }
 
         btDisplayText.setOnClickListener {
-            //    dialog.show()
+            // dialog.show()
             // надо попробовать сделать и с текст ерор и с лэйаут ерор в одном из них будет выпадать картинка по умолчанию,
             // а в другом та картинка, которую мы поставили
 
@@ -71,22 +77,19 @@ class MainActivity3 : AppCompatActivity() {
             } else if (editText2Passw .text.toString().isEmpty()) {
                 editText2Passw .error = getString(R.string.PassCantBeEmpty)
             } else {
+
+                kotlinActivityStart(this)
                 textView.text = "${editTextLog.text.toString()} ${editText2Passw .text.toString()}"
 
-
-
-
-                val dialog = AlertDialog.Builder(this)
-                    .setTitle("Information")
-                    .setMessage("Login:" + "${editTextLog.text.toString()} " + "Password:" +"\n ${editText2Passw.text.toString()}")
-                    .setCancelable(true)
-                    .setPositiveButton("Ok") { dialog, _ ->
-                        dialog.cancel()}
-                    .setNegativeButton("cancel") {dialog, _ -> dialog.cancel()}
-                dialog.show()
-
-
             }
+            val dialog = AlertDialog.Builder(this)
+                .setTitle("Information")
+                .setMessage("Login:" + "${editTextLog.text.toString()} " + "Password:" +"\n ${editText2Passw.text.toString()}")
+                .setCancelable(true)
+                .setPositiveButton("Ok") { dialog, _ ->
+                    dialog.cancel()}
+                .setNegativeButton("cancel") {dialog, _ -> dialog.cancel()}
+            dialog.show()
         }
     }
 }
