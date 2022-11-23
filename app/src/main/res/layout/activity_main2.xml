@@ -21,4 +21,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.191" />
 
+    <ImageView
+        android:id="@+id/ImageView"
+        android:layout_width="182dp"
+        android:layout_height="189dp"
+        android:src="@drawable/Cat_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.756" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

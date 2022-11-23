@@ -7,12 +7,50 @@
     tools:context=".MainActivity3">
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutLogin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToActivity1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EdTextLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_your_login"
+
+            android:textStyle="italic" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToActivity1"
+        app:layout_constraintTop_toBottomOf="@+id/layoutLogin"
+        app:layout_constraintVertical_bias="0.143"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EdTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_your_password"
+            android:textStyle="italic" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/btnGoToActivity1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#C69EB2"
-        android:text="Go to Activity 1"
+        android:text="@string/go_to_activity_1"
         android:textColor="@color/black"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,22 +58,57 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+        app:layout_constraintVertical_bias="0.783" />
 
-    <TextView
+    <Button
+        android:id="@+id/displayBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/display_text"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToActivity1"
+        app:layout_constraintTop_toBottomOf="@+id/layoutPassword"
+        tools:layout_editor_absoluteX="0dp" />
 
-        android:layout_width="109dp"
-        android:layout_height="40dp"
-        android:text="This is Activity 3"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToActivity1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayBtn"
+
+        tools:text="Name passvord" />
+
+
+    <RadioButton
+        android:id="@+id/rb1"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="124dp"
+        android:textColor="#C69EB2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rb2"
+        app:layout_constraintHorizontal_bias="0.972"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGoToActivity1"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.218" />
+
+    <RadioButton
+        android:id="@+id/rb2"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:shadowColor="#C69EB2"
+        android:layout_marginEnd="84dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoToActivity1"
+        app:layout_constraintVertical_bias="0.237" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
