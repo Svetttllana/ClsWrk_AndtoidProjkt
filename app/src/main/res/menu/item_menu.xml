@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/close"
+        android:title="Close the app"/>
+    <item
+        android:id="@+id/goBack"
+        android:title="Go to previos activity"/>
+
+
+</menu>

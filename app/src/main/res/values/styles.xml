@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="BtnStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textStyle"> italic</item>
+        <item name="android:textColor"> @color/black </item>
+        <item name="android:backgroundTint"> #C69EB2</item>
+
+    </style>
+
+    <style name="BtnStyle2" parent="Widget.AppCompat.Button">
+
+      <item name="android:textStyle">italic</item>
+        <item name="android:textColor"> @color/black </item>
+        <item name="android:backgroundTint">#B94F61C6</item>
+
+
+
+    </style>
+</resources>
