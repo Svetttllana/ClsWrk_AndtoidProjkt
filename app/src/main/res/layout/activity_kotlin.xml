@@ -12,19 +12,21 @@
         android:layout_width="wrap_content"
         android:orientation="vertical"
         android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="100dp"
-        android:layout_height="500dp"
-        android:text="Button"
-        android:backgroundTint= "#C69EB2"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/ros"
+            android:layout_marginEnd="110dp"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
         android:id="@+id/btn2"
         android:layout_width="100dp"
         android:layout_height="500dp"
@@ -37,7 +39,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
+            android:layout_width="235dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginStart="100dp"
@@ -46,8 +48,9 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="159dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:text="The screen is finished!" />
         </androidx.cardview.widget.CardView>
 
