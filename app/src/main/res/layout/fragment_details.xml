@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".DetailsFragment">
 
 
-<androidx.fragment.app.FragmentContainerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-android:id="@+id/activity_container"   />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="You State on details fragment"
+        android:textColor="#873232"
+        android:textSize="20sp"
+android:gravity="center"
 
-
-
+        app:layout_constraintTop_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

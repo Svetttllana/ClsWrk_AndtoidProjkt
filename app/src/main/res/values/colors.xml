@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="siren">#A78FCF</color>
+    <color name="siren2">#AE5E97</color>
+    <color name="siniCostom">#777BC6</color>
+    <color name="sholt">#DCCB8A</color>
+    <color name="siren3">#8069468F</color>
+    <color name="krasn">#DD7967</color>
 </resources>
