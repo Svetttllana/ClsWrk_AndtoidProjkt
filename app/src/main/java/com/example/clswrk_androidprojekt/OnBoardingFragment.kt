@@ -25,7 +25,7 @@ class OnBoardingFragment : Fragment() {
             parentFragmentManager.
             beginTransaction()
                 .replace(R.id.activity_container,ItemsFragment())
-                .addToBackStack("ded")
+                .addToBackStack("details")
                 .commit()
         }
 
