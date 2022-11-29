@@ -1,4 +1,6 @@
-package com.example.clswrk_androidprojekt.`adapter`
+package com.example.clswrk_androidprojekt.adapter
+
+
 
 import android.view.View
 import android.widget.ImageView
@@ -8,20 +10,22 @@ import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.listener.ItemsListener
 import com.example.clswrk_androidprojekt.model.ItemsModel
 
-class ItemsViewHolder(private val view: View,
-private val itemsListener: ItemsListener
-                      ):RecyclerView.ViewHolder(view) {
+class ItemsViewHolder(
+    private var view: View,
+    private var itemsListener: ItemsListener
+) : RecyclerView.ViewHolder(view) {
 
     // во вьюхолдере всегда баинд и сабмитлист
-    fun bind(string: String){
+    fun bind(itemsModel: ItemsModel) {
 
-        val name = view.findViewById<TextView>(R.id.tv_pinaple)
-        val imageView = view.findViewById<ImageView>(R.id.)
-        val date = view.findViewById<ImageView>(R.id.)
 
-//        name.text = string
-//imageView.setBackgroundResource(itemsModel.)
-//        date.text = itemsModel.date
+        val name = view.findViewById<TextView>(R.id.tv_name)
+        val imageView = view.findViewById<ImageView>(R.id.iv_image)
+        val date = view.findViewById<TextView>(R.id.tv_date)
+
+        name.text = itemsModel.name
+        imageView.setBackgroundResource(itemsModel.image)
+        date.text = itemsModel.date
 
 
         imageView.setOnClickListener {
@@ -29,13 +33,12 @@ private val itemsListener: ItemsListener
             itemsListener.onClick()
         }
 
-        itemView.setOnClickListener{
+        itemView.setOnClickListener {
             itemsListener.onElementSelected(
-                itemsModel.name,itemsModel.date,itemsModel.image
+                itemsModel.name, itemsModel.date, itemsModel.image
             )
 
         }
-
 
 
     }

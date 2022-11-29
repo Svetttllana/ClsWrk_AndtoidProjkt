@@ -4,6 +4,7 @@ import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
+import com.example.clswrk_androidprojekt.adapter.ItemsViewHolder
 import com.example.clswrk_androidprojekt.listener.ItemsListener
 import com.example.clswrk_androidprojekt.model.ItemsModel
 
@@ -14,7 +15,7 @@ class ItemsAdapter(
 
 
 
-    //дист прватный виден ток в адапторе
+    //лист приватный виден ток в адапторе
     private var listItems = mutableListOf<ItemsModel>()
     // это метод по умолчанию и так его принято называть
         //инициализируем вот так

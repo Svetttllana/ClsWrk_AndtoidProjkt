@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +19,6 @@ class ItemsFragment : Fragment(), ItemsListener {
 
 
 private lateinit var  itemsAdapter:ItemsAdapter
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,32 +40,58 @@ private lateinit var  itemsAdapter:ItemsAdapter
 recyclerView.adapter = itemsAdapter
 
      val listItems = listOf<ItemsModel>(
-         ItemsModel(
-             R.drawable.pineaple,
+         ItemsModel(R.drawable.pineaple,
          "Android",
          "20.02.2001"
 
          ),
-         ItemsModel(
-             R.drawable.rose_image,
+         ItemsModel(R.drawable.rose_image,
              "IOS",
              "19.02.2002"
 
          ),
-         ItemsModel(
-             R.drawable.memkit_image,
+         ItemsModel(R.drawable.memkit_image,
              "Flutter",
              "21.02.2001"
 
          ),
-         ItemsModel(
-             R.drawable.chmonya_image,
+         ItemsModel(R.drawable.chmonya_image,
              "C++",
              "18.02.2001"
 
          ),
+         ItemsModel(R.drawable.pineaple,
+             "Phyton",
+             "24.02.2001"
+
+         ),
          ItemsModel(
-             R.drawable.pineaple,
+             R.drawable.chmonya_image,
+             ".NET",
+             "29.02.2009"
+
+         ),
+         ItemsModel(R.drawable.pineaple,
+             "Android",
+             "20.02.2001"
+
+         ),
+         ItemsModel(R.drawable.rose_image,
+             "IOS",
+             "19.02.2002"
+
+         ),
+         ItemsModel(R.drawable.memkit_image,
+             "Flutter",
+             "21.02.2001"
+
+         ),
+         ItemsModel(R.drawable.chmonya_image,
+             "C++",
+             "18.02.2001"
+
+         ),
+         ItemsModel(R.drawable.pineaple,
              "Phyton",
              "24.02.2001"
 
@@ -84,35 +108,34 @@ recyclerView.adapter = itemsAdapter
 
      itemsAdapter.submitList(listItems)
 
-
-
      }
+
     override fun onClick(){
-        Toast.makeText(context," Image View" , Toast.LENGH_Short).show
+        Toast.makeText(context," Image View" , Toast.LENGTH_SHORT).show()
     }
-    override fun onElementSelected()
-    val detailsFragment = DetailsFragment()
-    val bundle = Bundle()
+
+    override fun onElementSelected(name:String,date:String,imageView: Int) {
 
 
+        val detailsFragment = DetailsFragment()
+        val bundle = Bundle()
+        bundle.putString("name",name)
+        bundle.putString("date",date)
+        bundle.putInt("imageView",imageView)
+                detailsFragment.arguments = bundle
 
 
+        //TODO add метод мы больше не используем
+        // теперь всегда используем replase
+        //replace всегда будет иметь или аддТоБукстек, чтобы мы могли вернутся назад или же его не будет,
+        // чтобы мы вернулись назад
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.activity_container,detailsFragment)
+            .addToBackStack("Details")
+            .commit()
 
 
-    bundle.putString("name",name)
-    bundle.putString("date",date)
-    bundle.putString("imageView",imageView)
-    detailsFragment.arguments = bundle
-
-
-
-    //TODO add метод мы больше не используем
-    // теперь всегда используем replase
-    //replace всегда будет иметь или аддТоБукстек, чтобы мы могли вернутся назад или же его не будет, чтобы мы вернулись назад
-    parentFragmentManager.beginTrancation()
-
-
-
+    }
  }
 
 
