@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt. adapter
+package com.example.clswrk_androidprojekt.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
@@ -18,7 +18,7 @@ class ItemsAdapter(
     //лист приватный виден ток в адапторе
     private var listItems = mutableListOf<ItemsModel>()
     // это метод по умолчанию и так его принято называть
-        //инициализируем вот так
+        //инициализируем вот так через сеттер
     fun submitList(list: List<ItemsModel>){
         this.listItems=list.toMutableList()
 
@@ -30,8 +30,9 @@ class ItemsAdapter(
         return ItemsViewHolder(view,itemsListener)
     }
 
+    // тут прост передаем данные
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
-
+//вызываем метод вьюХолдера и передаем ему каждй элемент
         holder.bind(listItems[position])
     }
 

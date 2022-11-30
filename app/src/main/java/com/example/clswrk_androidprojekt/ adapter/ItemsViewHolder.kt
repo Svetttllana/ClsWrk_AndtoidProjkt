@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.listener.ItemsListener
 import com.example.clswrk_androidprojekt.model.ItemsModel
-
+// должен показать данные из листа на ю-ай.
+// он получчает 1 элемент из всего списка и ему присваивает вьюшки
 class ItemsViewHolder(
     private var view: View,
     private var itemsListener: ItemsListener
@@ -33,6 +34,9 @@ class ItemsViewHolder(
             itemsListener.onClick()
         }
 
+
+        //получаем данные того элемента на который нажали,
+        // вьюХолдер работает по позициям
         itemView.setOnClickListener {
             itemsListener.onElementSelected(
                 itemsModel.name, itemsModel.date, itemsModel.image
