@@ -6,19 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clswrk_androidprojekt.model.ItemsModel
 
-class ItemsViewModel:ViewModel() {
+class ItemsViewModel : ViewModel() {
 
-private val _items = MutableLiveData<List<ItemsModel>>()
-val items:LiveData<List<ItemsModel>> = _items
+    private val _items = MutableLiveData<List<ItemsModel>>()
+    val items: LiveData<List<ItemsModel>> = _items
 
 
     private val _msg = MutableLiveData<String>()
-    val msg :LiveData<String> = _msg
+    val msg: LiveData<String> = _msg
 
     private val _bundle = MutableLiveData<NavigateWithBundle>()
     val bundle: LiveData<NavigateWithBundle> = _bundle
 
-    fun getData(){
+    fun getData() {
 
         val listItems = listOf<ItemsModel>(
 
@@ -41,21 +41,21 @@ val items:LiveData<List<ItemsModel>> = _items
 
     }
 
-    fun imageViewClicked(){
+    fun imageViewClicked() {
 
-_msg.value= "ImageView clicked"
+        _msg.value = "ImageView clicked"
     }
 
-    fun elementClicked(name: String, date: String, imageView: Int){
+    fun elementClicked(name: String, date: String, imageView: Int) {
 
-        _bundle.value = NavigateWithBundle(name = name, date = date, image= imageView)
+        _bundle.value = NavigateWithBundle(name = name, date = date, image = imageView)
     }
 
 }
 
 data class NavigateWithBundle(
-    val  image :Int,
-    val name : String,
-    val date : String
+    val image: Int,
+    val name: String,
+    val date: String
 
 )
