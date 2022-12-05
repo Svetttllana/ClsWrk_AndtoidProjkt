@@ -6,6 +6,7 @@ import com.example.clswrk_androidprojekt.model.ItemsModel
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,11 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.clswrk_androidprojekt.BundleConstans.IMAGE_VIEW
 import com.example.clswrk_androidprojekt.ItemsViewModel
 
+//Dont use because it is cringe
+const val NAME = "name"
 
 class ItemsFragment : Fragment(), ItemsListener {
 
@@ -46,25 +50,28 @@ class ItemsFragment : Fragment(), ItemsListener {
             itemsAdapter.submitList(listItems)
         }
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+            Log.w("str", getString(msg))
         }
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val detailsFragment = DetailsFragment()
+                val bundle = Bundle()
+                bundle.putString(NAME, navBundle.name)
+                bundle.putString(DATE, navBundle.date)
+                bundle.putInt(IMAGE_VIEW, navBundle.image)
 
-            val detailsFragment = DetailsFragment()
-            // в бвндле храми маленькие данные и плюс можно там прописать ключик и имя ключика,
-            // которые мы сможем передать в аргументы
-            val bundle = Bundle()
-            bundle.putString("name", navBundle.name)
-            bundle.putString("date", navBundle.date)
-            bundle.putInt("imageView", navBundle.image)
-
-            detailsFragment.arguments = bundle
+                detailsFragment.arguments = bundle
 
 
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, detailsFragment)
-                .commit()
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_container, detailsFragment)
+                    .addToBackStack("Details")
+                    .commit()
+                // in the end of our action. мы грим шо пользователь пронавигировался
+                viewModel.userNavigated()
+            }
 
         }
 
@@ -78,17 +85,16 @@ class ItemsFragment : Fragment(), ItemsListener {
     override fun onElementSelected(name: String, date: String, imageView: Int) {
         viewModel.elementClicked(name, date, imageView)
     }
+
+    companion object {
+
+        internal val DATE = "date"
+    }
 }
 
 
-//        //TODO add метод мы больше не используем
-//        // теперь всегда используем replase
-//        //replace всегда будет иметь или аддТоБукстек, чтобы мы могли вернутся назад или же его не будет,
-//        // чтобы мы вернулись назад
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.activity_container,detailsFragment)
-//            .addToBackStack("Details")
-//            .commit()
+
+
 
 
 
