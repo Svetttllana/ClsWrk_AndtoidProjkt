@@ -1,12 +1,12 @@
-package com.example.clswrk_androidprojekt.adapter
+package com.example.clswrk_androidprojekt.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.adapter.ItemsViewHolder
-import com.example.clswrk_androidprojekt.listener.ItemsListener
+import com.example.clswrk_androidprojekt.databinding.ItemFruitBinding
 import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.presentation.adapter.listener.ItemsListener
 
 class ItemsAdapter(
     private val itemsListener: ItemsListener
@@ -25,9 +25,10 @@ class ItemsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
+val viewBinding =ItemFruitBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_fruit,parent,false)
-        return ItemsViewHolder(view,itemsListener)
+        return ItemsViewHolder(viewBinding, itemsListener)
     }
 
     // тут прост передаем данные

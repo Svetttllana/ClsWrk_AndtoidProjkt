@@ -1,35 +1,32 @@
-package com.example.clswrk_androidprojekt.adapter
-
-
-
+package com.example.clswrk_androidprojekt.presentation.adapter
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.listener.ItemsListener
+import com.example.clswrk_androidprojekt.databinding.ItemFruitBinding
 import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.presentation.adapter.listener.ItemsListener
+
 // должен показать данные из листа на ю-ай.
 // он получчает 1 элемент из всего списка и ему присваивает вьюшки
+
 class ItemsViewHolder(
-    private var view: View,
+    private var viewBinding: ItemFruitBinding,
     private var itemsListener: ItemsListener
-) : RecyclerView.ViewHolder(view) {
+) : RecyclerView.ViewHolder(viewBinding.root) {
 
     // во вьюхолдере всегда баинд и сабмитлист
     fun bind(itemsModel: ItemsModel) {
 
 
-        val name = view.findViewById<TextView>(R.id.tv_name)
-        val imageView = view.findViewById<ImageView>(R.id.iv_image)
-        val date = view.findViewById<TextView>(R.id.tv_date)
-
-        name.text = itemsModel.name
-        imageView.setBackgroundResource(itemsModel.image)
-        date.text = itemsModel.date
+     viewBinding.tvName.text = itemsModel.name
+     viewBinding.ivImage.setBackgroundResource(itemsModel.image)
+     viewBinding.tvDate.text = itemsModel.date
 
 
-        imageView.setOnClickListener {
+
+       viewBinding.ivImage.setOnClickListener {
 
             itemsListener.onClick()
         }

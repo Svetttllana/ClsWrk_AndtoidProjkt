@@ -7,6 +7,10 @@ android {
     namespace 'com.example.clswrk_androidprojekt'
     compileSdk 32
 
+    buildFeatures{
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.example.clswrk_androidprojekt"
         minSdk 21
@@ -23,6 +27,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
