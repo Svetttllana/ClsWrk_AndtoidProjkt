@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".OnBoardingFragment">
+
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.clswrk_androidprojekt.OnBoardingViewModel" />
 
 
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/black"
-        android:text="@string/hello_onBoarding_fragment"
-        android:textSize="30dp" />
+        android:background="@color/white"
+        tools:context=".OnBoardingFragment">
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="159dp"
-android:textColor="@color/black"
-        android:layout_height="55dp"
-        android:text="BtnFinish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_onBoarding_fragment"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="159dp"
+            android:layout_height="55dp"
+            android:text="BtnFinish"
+
+            android:onClick="@{() -> viewModel.finishButtonClicked()}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
+

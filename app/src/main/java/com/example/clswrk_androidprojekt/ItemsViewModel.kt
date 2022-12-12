@@ -6,7 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clswrk_androidprojekt.model.ItemsModel
 
-class ItemsViewModel : ViewModel() {
+class ItemsViewModel(private val testParametr:TestParametr
+) : ViewModel() {
 
     private val _items = MutableLiveData<List<ItemsModel>>()
     val items: LiveData<List<ItemsModel>> = _items
@@ -65,3 +66,5 @@ data class NavigateWithBundle(
     val date: String
 
 )
+
+class TestParametr()

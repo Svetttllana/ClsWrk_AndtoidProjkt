@@ -1,5 +1,3 @@
-import com.example.clswrk_androidprojekt.DetailsFragment
-import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.adapter.ItemsAdapter
 import com.example.clswrk_androidprojekt.listener.ItemsListener
 import com.example.clswrk_androidprojekt.model.ItemsModel
@@ -15,8 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.clswrk_androidprojekt.*
 import com.example.clswrk_androidprojekt.BundleConstans.IMAGE_VIEW
-import com.example.clswrk_androidprojekt.ItemsViewModel
 
 //Dont use because it is cringe
 const val NAME = "name"
@@ -25,7 +23,11 @@ class ItemsFragment : Fragment(), ItemsListener {
 
 
     private lateinit var itemsAdapter: ItemsAdapter
-    private val viewModel: ItemsViewModel by viewModels()
+    private val viewModel: ItemsViewModel by viewModels{
+        ItemsViewModelFactory(TestParametr())
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
