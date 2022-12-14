@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.adapter
+package com.example.clswrk_androidprojekt.presentation.view.adapter
 
 
 
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.listener.ItemsListener
+import com.example.clswrk_androidprojekt.presentation.view.adapter.listener.ItemsListener
 import com.example.clswrk_androidprojekt.model.ItemsModel
 // должен показать данные из листа на ю-ай.
 // он получчает 1 элемент из всего списка и ему присваивает вьюшки

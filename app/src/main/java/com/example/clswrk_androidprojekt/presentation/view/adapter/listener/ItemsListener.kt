@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.listener
+package com.example.clswrk_androidprojekt.presentation.view.adapter.listener
 
 import android.widget.ImageView
 

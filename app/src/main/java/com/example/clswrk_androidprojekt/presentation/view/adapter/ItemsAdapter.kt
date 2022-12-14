@@ -1,11 +1,10 @@
-package com.example.clswrk_androidprojekt.adapter
+package com.example.clswrk_androidprojekt.presentation.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.adapter.ItemsViewHolder
-import com.example.clswrk_androidprojekt.listener.ItemsListener
+import com.example.clswrk_androidprojekt.presentation.view.adapter.listener.ItemsListener
 import com.example.clswrk_androidprojekt.model.ItemsModel
 
 class ItemsAdapter(

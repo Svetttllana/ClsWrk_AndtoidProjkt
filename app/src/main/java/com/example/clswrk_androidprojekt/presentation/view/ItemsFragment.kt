@@ -1,8 +1,8 @@
-import com.example.clswrk_androidprojekt.DetailsFragment
+package com.example.clswrk_androidprojekt.presentation.view
+
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.adapter.ItemsAdapter
-import com.example.clswrk_androidprojekt.listener.ItemsListener
-import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.presentation.view.adapter.ItemsAdapter
+import com.example.clswrk_androidprojekt.presentation.view.adapter.listener.ItemsListener
 
 
 import android.os.Bundle
@@ -15,17 +15,23 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.clswrk_androidprojekt.BundleConstans.IMAGE_VIEW
-import com.example.clswrk_androidprojekt.ItemsViewModel
+import com.example.clswrk_androidprojekt.data.ItemsRepositoryImpl
+import com.example.clswrk_androidprojekt.domain.ItemsInteractor
+import com.example.clswrk_androidprojekt.presentation.view.NavigationExt.fmReplace
 
-//Dont use because it is cringe
-const val NAME = "name"
+import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
+import com.example.clswrk_androidprojekt.utils.BundleConstans.DATE
+import com.example.clswrk_androidprojekt.utils.BundleConstans.NAME
+
 
 class ItemsFragment : Fragment(), ItemsListener {
 
 
     private lateinit var itemsAdapter: ItemsAdapter
-    private val viewModel: ItemsViewModel by viewModels()
+    private val viewModel: ItemsViewModel by viewModels{
+      ItemsViewModelFactory(ItemsInteractor(ItemsRepositoryImpl()))
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +47,7 @@ class ItemsFragment : Fragment(), ItemsListener {
         itemsAdapter = ItemsAdapter(this)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        // у фрагмента нет контекста. закрепляем как фрагмнт
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
 
@@ -64,13 +70,14 @@ class ItemsFragment : Fragment(), ItemsListener {
                 detailsFragment.arguments = bundle
 
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, detailsFragment)
-                    .addToBackStack("Details")
-                    .commit()
-                // in the end of our action. мы грим шо пользователь пронавигировался
-                viewModel.userNavigated()
+//                parentFragmentManager
+//                    .beginTransaction()
+//                    .replace(R.id.activity_container, detailsFragment)
+//                    .addToBackStack("Details")
+//                    .commit()
+                    viewModel.userNavigated()
+                //NavigationExt.
+                fmReplace(parentFragmentManager,DetailsFragment(),true)
             }
 
         }
@@ -86,11 +93,9 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.elementClicked(name, date, imageView)
     }
 
-    companion object {
 
-        internal val DATE = "date"
-    }
 }
+
 
 
 
