@@ -4,4 +4,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_onBoarding_fragment">hello onBoarding Fragment</string>
     <string name="image_view_clicked">ImageView clicked</string>
+    <string name="sign_in">sign in</string>
+    <string name="enter_your_password">enter your password</string>
+    <string name="enter_your_login">enter your login</string>
+    <string name="go_to_on_boarding">Go To On Boarding</string>
 </resources>

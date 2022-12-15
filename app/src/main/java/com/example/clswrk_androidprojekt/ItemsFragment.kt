@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.*
 import com.example.clswrk_androidprojekt.BundleConstans.IMAGE_VIEW
+import com.example.clswrk_androidprojekt.presentation.view.NavigationExt.fmReplace
 
 //Dont use because it is cringe
 const val NAME = "name"
@@ -66,13 +67,15 @@ class ItemsFragment : Fragment(), ItemsListener {
                 detailsFragment.arguments = bundle
 
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, detailsFragment)
-                    .addToBackStack("Details")
-                    .commit()
-                // in the end of our action. мы грим шо пользователь пронавигировался
+
+//                parentFragmentManager
+//                    .beginTransaction()
+//                    .replace(R.id.activity_container, detailsFragment)
+//                    .addToBackStack("Details")
+//                    .commit()
                 viewModel.userNavigated()
+                //NavigationExt.
+                fmReplace(parentFragmentManager,DetailsFragment(),true)
             }
 
         }
