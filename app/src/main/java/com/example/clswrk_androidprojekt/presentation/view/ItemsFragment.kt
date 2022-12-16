@@ -1,6 +1,7 @@
-import com.example.clswrk_androidprojekt.adapter.ItemsAdapter
-import com.example.clswrk_androidprojekt.listener.ItemsListener
-import com.example.clswrk_androidprojekt.model.ItemsModel
+package com.example.clswrk_androidprojekt.presentation.view
+
+
+import com.example.clswrk_androidprojekt.presentation.listener.ItemsListener
 
 
 import android.os.Bundle
@@ -14,19 +15,20 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.*
-import com.example.clswrk_androidprojekt.BundleConstans.IMAGE_VIEW
-import com.example.clswrk_androidprojekt.presentation.view.NavigationExt.fmReplace
+import com.example.clswrk_androidprojekt.presentation.ItemsViewModel
+import com.example.clswrk_androidprojekt.presentation.adapter.ItemsAdapter
+import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
+import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
+import dagger.hilt.android.AndroidEntryPoint
 
 //Dont use because it is cringe
 const val NAME = "name"
-
+@AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
 
 
     private lateinit var itemsAdapter: ItemsAdapter
-    private val viewModel: ItemsViewModel by viewModels{
-        ItemsViewModelFactory(TestParametr())
-    }
+    private val viewModel: ItemsViewModel by viewModels()
 
 
 
@@ -68,14 +70,9 @@ class ItemsFragment : Fragment(), ItemsListener {
 
 
 
-//                parentFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.activity_container, detailsFragment)
-//                    .addToBackStack("Details")
-//                    .commit()
                 viewModel.userNavigated()
-                //NavigationExt.
-                fmReplace(parentFragmentManager,DetailsFragment(),true)
+
+                fmReplace(parentFragmentManager, DetailsFragment(),true)
             }
 
         }

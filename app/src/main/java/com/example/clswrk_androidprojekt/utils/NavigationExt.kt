@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view
+package com.example.clswrk_androidprojekt.utils
 
 
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.dataBinding
+package com.example.clswrk_androidprojekt.presentation.dataBinding
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

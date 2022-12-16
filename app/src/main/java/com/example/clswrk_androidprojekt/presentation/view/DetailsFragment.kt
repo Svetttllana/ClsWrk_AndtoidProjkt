@@ -1,6 +1,5 @@
-package com.example.clswrk_androidprojekt
+package com.example.clswrk_androidprojekt.presentation.view
 
-import ItemsFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.clswrk_androidprojekt.BundleConstans.IMAGE_VIEW
-//private const val NAME = "name"
+import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
+import com.example.clswrk_androidprojekt.R
+
 
 class DetailsFragment : Fragment() {
 
@@ -32,10 +32,10 @@ class DetailsFragment : Fragment() {
 
         val bundle = arguments
 
-        //ключ не изменяется и не отображается пользователю
+
         bundle?.let{safeBundle ->
             val name = safeBundle.getString(NAME)
-            val date = safeBundle.getString(ItemsFragment.Companion.DATE)
+            val date = safeBundle.getString(ItemsFragment.DATE)
             val image = safeBundle.getInt(IMAGE_VIEW)
 
             detailsName.text = name
@@ -49,7 +49,7 @@ class DetailsFragment : Fragment() {
     // we can use this, because we see where we get it
     companion object {
 
-        private val DATE = "date"
+
         const val NAME = "name"
     }
 }

@@ -1,19 +1,22 @@
-package com.example.clswrk_androidprojekt
+package com.example.clswrk_androidprojekt.presentation.view
 
-import ItemsFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.viewModels
+import com.example.clswrk_androidprojekt.presentation.OnBoardingViewModel
+
 import com.example.clswrk_androidprojekt.databinding.FragmentOnBoardingBinding
+
+import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
 
 
 class OnBoardingFragment : Fragment() {
 
     private val viewModel: OnBoardingViewModel by viewModels()
+
 
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding: FragmentOnBoardingBinding get() = _binding!!
@@ -35,10 +38,7 @@ class OnBoardingFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it != null) {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.activity_container, ItemsFragment())
-                    .addToBackStack("details")
-                    .commit()
+                fmReplace(parentFragmentManager, ItemsFragment(), false)
                 viewModel.finishPerformed()
             }
         }

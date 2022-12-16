@@ -10,18 +10,18 @@
 
         <variable
             name="viewModel"
-            type="com.example.clswrk_androidprojekt.dataBinding.LoginViewModel" />
+            type="com.example.clswrk_androidprojekt.presentation.dataBinding.LoginViewModel" />
 
         <variable
             name="viewHandler"
-            type="com.example.clswrk_androidprojekt.dataBinding.LoginFragment.ViewHandler" />
+            type="com.example.clswrk_androidprojekt.presentation.dataBinding.LoginFragment.ViewHandler" />
 
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
      android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dataBinding.LoginFragment">
+    tools:context=".presentation. adapter.dataBinding.LoginFragment">
 
     <EditText
 

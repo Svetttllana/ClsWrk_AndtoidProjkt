@@ -1,6 +1,4 @@
-package com.example.clswrk_androidprojekt.listener
-
-import android.widget.ImageView
+package com.example.clswrk_androidprojekt.presentation.listener
 
 interface ItemsListener {
 
