@@ -8,4 +8,5 @@
     <string name="enter_your_password">enter your password</string>
     <string name="enter_your_login">enter your login</string>
     <string name="go_to_on_boarding">Go To On Boarding</string>
+    <string name="hello_home_fragment">hello home fragment</string>
 </resources>

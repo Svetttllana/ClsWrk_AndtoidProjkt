@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation
+package com.example.clswrk_androidprojekt.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view
+package com.example.clswrk_androidprojekt.presentation.view.home
 
 
 import com.example.clswrk_androidprojekt.presentation.listener.ItemsListener
@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.*
-import com.example.clswrk_androidprojekt.presentation.ItemsViewModel
 import com.example.clswrk_androidprojekt.presentation.adapter.ItemsAdapter
 import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
 import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace

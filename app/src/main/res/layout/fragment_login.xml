@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-    >
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.clswrk_androidprojekt.presentation.dataBinding.LoginViewModel" />
-
-        <variable
-            name="viewHandler"
-            type="com.example.clswrk_androidprojekt.presentation.dataBinding.LoginFragment.ViewHandler" />
-
-    </data>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-     android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation. adapter.dataBinding.LoginFragment">
+    tools:context=".presentation. ">
 
     <EditText
 
         android:id="@+id/et_userLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@={viewModel.userName}"
+
         android:layout_marginTop="120dp"
         android:hint="@string/enter_your_login"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +23,7 @@
         android:id="@+id/et_userPassword"
         android:layout_width="410dp"
         android:layout_height="55dp"
-        android:text="@={viewModel.userPassword}"
+
         android:layout_marginBottom="492dp"
         android:hint="@string/enter_your_password"
 
@@ -54,20 +39,18 @@
         android:id="@+id/tv_userCreads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@={viewModel.userCreads}"
         android:textColor="@color/black"
         android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnShowCreads" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnShowCreads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="328dp"
-        android:onClick="@{()-> viewModel.showCreads()}"
         android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,17 +58,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_userPassword"
         app:layout_constraintVertical_bias="0.534" />
 
-    <Button
-        android:id="@+id/dtn_goToOnBoarding"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="@{()-> viewHandler.goToTheOnBoarding()}"
-        android:text="@string/go_to_on_boarding"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/tv_userCreads"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    </layout>

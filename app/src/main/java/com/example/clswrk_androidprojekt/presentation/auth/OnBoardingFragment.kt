@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view
+package com.example.clswrk_androidprojekt.presentation.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.clswrk_androidprojekt.presentation.OnBoardingViewModel
 
 import com.example.clswrk_androidprojekt.databinding.FragmentOnBoardingBinding
+import com.example.clswrk_androidprojekt.presentation.view.home.ItemsFragment
 
 import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
 

@@ -1,10 +1,10 @@
-package com.example.clswrk_androidprojekt.presentation
+package com.example.clswrk_androidprojekt.presentation.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.domain.ItemsInteractor
+import com.example.clswrk_androidprojekt.domain.items.ItemsInteractor
 import com.example.clswrk_androidprojekt.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
