@@ -11,15 +11,19 @@ import com.example.clswrk_androidprojekt.databinding.FragmentOnBoardingBinding
 import com.example.clswrk_androidprojekt.presentation.view.home.ItemsFragment
 
 import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class OnBoardingFragment : Fragment() {
-
-    private val viewModel: OnBoardingViewModel by viewModels()
+@AndroidEntryPoint
+class OnBoardingFragment : Fragment(), OnBoardingView {
 
 
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding: FragmentOnBoardingBinding get() = _binding!!
+
+    @Inject
+    lateinit var onBoardingPresenter: OnBoardingPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,17 +36,19 @@ class OnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        onBoardingPresenter.setView(this)
 
 
-        viewModel.nav.observe(viewLifecycleOwner) {
-            if (it != null) {
-                fmReplace(parentFragmentManager, ItemsFragment(), false)
-                viewModel.finishPerformed()
-            }
+        binding.btn1.setOnClickListener {
+            onBoardingPresenter.goToItemsFragment()
+
         }
 
+    }
+
+    override fun goToItemsFragment() {
+
+        fmReplace(parentFragmentManager, ItemsFragment(), false)
     }
 }
 

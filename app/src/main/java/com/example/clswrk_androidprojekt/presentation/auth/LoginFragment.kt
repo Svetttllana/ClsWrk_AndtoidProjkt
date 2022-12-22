@@ -12,13 +12,16 @@ import com.example.clswrk_androidprojekt.databinding.FragmentLoginBinding
 import com.example.clswrk_androidprojekt.presentation.view.home.HomeFragment
 import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(),LoginView {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LoginViewModel by viewModels()
+    @Inject
+    lateinit var loginPresenter: LoginPresenter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,23 +35,26 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+loginPresenter.setView(this)
+
+
 
 
         binding.btnShowCreads.setOnClickListener {
-            viewModel.loginUser(
+            loginPresenter.loginUser(
                 binding.etUserLogin.text.toString(),
                 binding.etUserPassword.text.toString()
             )
-
         }
 
-        viewModel.nav.observe(viewLifecycleOwner) {
-            fmReplace(parentFragmentManager,HomeFragment(),false)
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.activity_container, HomeFragment())
-//                .commit()
-        }
 
+
+
+
+    }
+
+    override fun userLoggedIn() {
+        fmReplace(parentFragmentManager, HomeFragment(), false)
     }
 
 }

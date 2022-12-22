@@ -15,82 +15,89 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.*
+import com.example.clswrk_androidprojekt.databinding.FragmentHomeBinding
+import com.example.clswrk_androidprojekt.databinding.FragmentItemsBinding
+import com.example.clswrk_androidprojekt.model.ItemsModel
 import com.example.clswrk_androidprojekt.presentation.adapter.ItemsAdapter
+import com.example.clswrk_androidprojekt.utils.BundleConstans.DATE
 import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
+import com.example.clswrk_androidprojekt.utils.BundleConstans.NAME
 import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-//Dont use because it is cringe
-const val NAME = "name"
+
 @AndroidEntryPoint
-class ItemsFragment : Fragment(), ItemsListener {
+class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
+    private var _binding: FragmentItemsBinding? = null
+    private val binding: FragmentItemsBinding get() = _binding!!
 
     private lateinit var itemsAdapter: ItemsAdapter
-    private val viewModel: ItemsViewModel by viewModels()
 
 
+    @Inject
+    lateinit var itemsPresenter: ItemsPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        return inflater.inflate(R.layout.fragment_items, container, false)
+        _binding = FragmentItemsBinding.inflate(inflater, container, false)
+        return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        itemsPresenter.setview(this)
+
         itemsAdapter = ItemsAdapter(this)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        // у фрагмента нет контекста. закрепляем как фрагмнт
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
 
-        viewModel.getData()
-        viewModel.items.observe(viewLifecycleOwner) { listItems ->
-            itemsAdapter.submitList(listItems)
-        }
-        viewModel.msg.observe(viewLifecycleOwner) { msg ->
-            Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
-            Log.w("str", getString(msg))
-        }
-        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
-            if (navBundle != null) {
-                val detailsFragment = DetailsFragment()
-                val bundle = Bundle()
-                bundle.putString(NAME, navBundle.name)
-                bundle.putString(DATE, navBundle.date)
-                bundle.putInt(IMAGE_VIEW, navBundle.image)
+        itemsPresenter.getItems()
 
-                detailsFragment.arguments = bundle
-
-
-
-                viewModel.userNavigated()
-
-                fmReplace(parentFragmentManager, DetailsFragment(),true)
-            }
-
-        }
 
     }
 
 
     override fun onClick() {
-        viewModel.imageViewClicked()
+        itemsPresenter.imageViewClicked()
     }
 
     override fun onElementSelected(name: String, date: String, imageView: Int) {
-        viewModel.elementClicked(name, date, imageView)
+        itemsPresenter.itemClicked(name, date, imageView)
+
+
     }
 
-    companion object {
-
-        internal val DATE = "date"
+    override fun ItemasReceived(itemsList: List<ItemsModel>) {
+        itemsAdapter.submitList(itemsList)
     }
+
+    override fun imageViewClicked(msg: Int) {
+        Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+    }
+
+
+    override fun itemClick(navigationData: NavigateWithBundle) {
+        val detailsFragment = DetailsFragment()
+        val bundle = Bundle()
+        bundle.putString(NAME, navigationData.name)
+        bundle.putString(DATE, navigationData.date)
+        bundle.putInt(IMAGE_VIEW, navigationData.image)
+        detailsFragment.arguments = bundle
+
+        fmReplace(parentFragmentManager, detailsFragment, true)
+    }
+
+
 }
 
 

@@ -25,5 +25,9 @@ class AuthInteractor @Inject constructor(
    fun logautUser(){
        authRepository.userLogaut()
    }
+//
+//    fun userLoggeout() {
+//        TODO("Not yet implemented")
+//    }
 
 }
