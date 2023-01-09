@@ -4,15 +4,15 @@ import com.example.clswrk_androidprojekt.model.UserModel
 
 interface AuthRepository {
 
-    fun loginUser(userName:String,userPassword:String)
+   suspend fun loginUser(userName:String,userPassword:String)
 
 
-    fun showUserCreds():UserModel
+   suspend fun showUserCreds():UserModel
 
 
-    fun doesUserExist():Boolean
+    suspend fun doesUserExist():Boolean
 
-    fun userLogaut()
+    suspend fun userLogaut()
 
 
 }

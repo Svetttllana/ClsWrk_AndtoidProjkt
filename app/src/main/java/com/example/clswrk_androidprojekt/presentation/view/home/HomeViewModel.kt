@@ -3,9 +3,12 @@ package com.example.clswrk_androidprojekt.presentation.view.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.clswrk_androidprojekt.domain.auth.AuthInteractor
 import com.example.clswrk_androidprojekt.model.UserModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -17,7 +20,12 @@ class HomeViewModel @Inject constructor(
     val userCreds:LiveData<UserModel> = _userCreds
 
     fun showUserData(){
-        _userCreds.value = authInteractor.getUserCreads()
+        viewModelScope.launch {
+
+
+            _userCreds.value = authInteractor.getUserCreads()
+        }
+
     }
 
 }

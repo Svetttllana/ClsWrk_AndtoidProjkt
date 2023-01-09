@@ -44,9 +44,7 @@ class LoginFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             fmReplace(parentFragmentManager,HomeFragment(),false)
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.activity_container, HomeFragment())
-//                .commit()
+
         }
 
     }

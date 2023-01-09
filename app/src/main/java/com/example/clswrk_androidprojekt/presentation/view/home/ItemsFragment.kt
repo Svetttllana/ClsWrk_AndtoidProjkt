@@ -22,13 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 //Dont use because it is cringe
 const val NAME = "name"
+
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
 
 
     private lateinit var itemsAdapter: ItemsAdapter
     private val viewModel: ItemsViewModel by viewModels()
-
 
 
     override fun onCreateView(
@@ -71,7 +71,7 @@ class ItemsFragment : Fragment(), ItemsListener {
 
                 viewModel.userNavigated()
 
-                fmReplace(parentFragmentManager, DetailsFragment(),true)
+                fmReplace(parentFragmentManager, DetailsFragment(), true)
             }
 
         }
