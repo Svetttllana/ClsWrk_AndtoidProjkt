@@ -8,26 +8,24 @@ class SharedPreferencecHelper @Inject constructor
     (private val sharedPreferences: SharedPreferences) {
 
 
-    fun saveUserName(name:String?){
+    fun saveUserName(name: String?) {
         sharedPreferences.edit().putString(USER_NAME, name).apply()
 
     }
 
-
-
-    fun saveUserPassword(password:String?){
+    fun saveUserPassword(password: String?) {
 
         sharedPreferences.edit().putString(USER_PASSWORD, password).apply()
 
     }
 
-    fun getUserCreads():UserModel{
-        val name = sharedPreferences.getString(USER_NAME, "")?: "no user"
-        val password = sharedPreferences.getString(USER_PASSWORD, "")?: "no user"
-        return UserModel(name,password)
+    fun getUserCreads(): UserModel {
+        val name = sharedPreferences.getString(USER_NAME, "") ?: "no user"
+        val password = sharedPreferences.getString(USER_PASSWORD, "") ?: "no user"
+        return UserModel(name, password)
     }
 
-    fun checkUserExists():Boolean{
+    fun checkUserExists(): Boolean {
         val name = sharedPreferences.getString(USER_NAME, "")
         val password = sharedPreferences.getString(USER_PASSWORD, "")
 
@@ -35,7 +33,7 @@ class SharedPreferencecHelper @Inject constructor
 
     }
 
-    fun removeUser(){
+    fun removeUser() {
         saveUserName(null)
         saveUserPassword(null)
 
@@ -43,8 +41,8 @@ class SharedPreferencecHelper @Inject constructor
 
 
     companion object {
-        private const val  USER_PASSWORD = "USER PASSWORD"
-        private const val  USER_NAME = "USER NAME"
+        private const val USER_PASSWORD = "USER PASSWORD"
+        private const val USER_NAME = "USER NAME"
 
     }
 

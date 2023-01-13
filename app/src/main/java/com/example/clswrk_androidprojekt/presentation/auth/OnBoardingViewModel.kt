@@ -3,16 +3,17 @@ package com.example.clswrk_androidprojekt.presentation.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.clswrk_androidprojekt.R
 
 class OnBoardingViewModel : ViewModel() {
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<navToItems?>()
+    val nav: LiveData<navToItems?> = _nav
 
     val onBoardingText = MutableLiveData<String>("default value")
 
     fun finishButtonClicked() {
-        _nav.value = Unit
+        _nav.value = navToItems(R.id.action_onBoardingFragment_to_itemsFragment,R.id.onBoardingFragment)
 
     }
 
@@ -21,4 +22,12 @@ class OnBoardingViewModel : ViewModel() {
     }
 
 
+
 }
+
+
+data class navToItems(
+    val destinationId:Int,
+    val removeFragmentId:Int
+
+)

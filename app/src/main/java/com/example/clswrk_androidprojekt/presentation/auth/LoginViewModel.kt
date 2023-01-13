@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.domain.auth.AuthInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -20,8 +21,9 @@ class LoginViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
+
 
     fun loginUser(userName: String, userPassword: String) {
         val coroutineExceptionHandler = CoroutineExceptionHandler{_,exeption ->
@@ -32,7 +34,7 @@ class LoginViewModel @Inject constructor(
             try {
                 launch {
                     authInteractor.loginUser(userName, userPassword)
-                    _nav.value = Unit
+                    _nav.value = R.id.action_loginFragment_to_homeFragment
                 }
 
             } catch (e: Exception) {
@@ -41,6 +43,10 @@ class LoginViewModel @Inject constructor(
 
 
         }
+    }
+
+    fun userNavigated(){
+        _nav.value = null
     }
 
 

@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.clswrk_androidprojekt.R
 
 import com.example.clswrk_androidprojekt.databinding.FragmentLoginBinding
-import com.example.clswrk_androidprojekt.presentation.view.home.HomeFragment
-import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
+import com.example.clswrk_androidprojekt.utils.NavHelper.navigateWithDelitedBackStack
+import com.example.clswrk_androidprojekt.utils.NavHelper.navigated
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,7 +45,12 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            fmReplace(parentFragmentManager,HomeFragment(),false)
+            if (it!=null) {
+                navigated(it)
+                viewModel.userNavigated()
+
+
+            }
 
         }
 

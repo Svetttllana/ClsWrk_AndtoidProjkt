@@ -12,12 +12,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.*
 import com.example.clswrk_androidprojekt.presentation.adapter.ItemsAdapter
 import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
-import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
+import com.example.clswrk_androidprojekt.utils.navigateWithBandl
+
 import dagger.hilt.android.AndroidEntryPoint
 
 //Dont use because it is cringe
@@ -45,7 +47,6 @@ class ItemsFragment : Fragment(), ItemsListener {
         itemsAdapter = ItemsAdapter(this)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        // у фрагмента нет контекста. закрепляем как фрагмнт
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
 
@@ -57,21 +58,20 @@ class ItemsFragment : Fragment(), ItemsListener {
             Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
             Log.w("str", getString(msg))
         }
-        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
-            if (navBundle != null) {
-                val detailsFragment = DetailsFragment()
+        viewModel.bundle.observe(viewLifecycleOwner) { it ->
+            if (it != null) {
                 val bundle = Bundle()
-                bundle.putString(NAME, navBundle.name)
-                bundle.putString(DATE, navBundle.date)
-                bundle.putInt(IMAGE_VIEW, navBundle.image)
-
-                detailsFragment.arguments = bundle
+                bundle.putString(NAME, it.name)
+                bundle.putString(DATE, it.date)
+                bundle.putInt(IMAGE_VIEW, it.image)
 
 
+                navigateWithBandl(
+                    it.destinationiD,
+                    bundle
+                )
 
                 viewModel.userNavigated()
-
-                fmReplace(parentFragmentManager, DetailsFragment(), true)
             }
 
         }

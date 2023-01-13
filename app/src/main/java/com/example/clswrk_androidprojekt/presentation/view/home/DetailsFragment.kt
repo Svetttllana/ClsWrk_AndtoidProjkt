@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
+
+import androidx.navigation.fragment.findNavController
 import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.databinding.FragmentDetailsBinding
-   import com.example.clswrk_androidprojekt.presentation.auth.LoginFragment
+
 import com.example.clswrk_androidprojekt.utils.BundleConstans.DATE
 import com.example.clswrk_androidprojekt.utils.BundleConstans.NAME
-import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
+import com.example.clswrk_androidprojekt.utils.NavHelper.replaceGraph
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,10 +63,10 @@ class DetailsFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner){
 
-           // fmReplace(parentFragmentManager,LoginFragment(),false)
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_container,LoginFragment())
-                .commit()
+            if (it != null) {
+                replaceGraph(it)
+            }
+           //findNavController().setGraph(R.navigation.auth_graph)
         }
 
     }

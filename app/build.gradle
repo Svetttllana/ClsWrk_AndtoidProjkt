@@ -63,4 +63,9 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.43.2'
     implementation 'androidx.hilt:hilt-work:1.0.0'
 
+    //nav Components
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
 }

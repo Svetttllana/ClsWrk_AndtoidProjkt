@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.databinding.FragmentHomeBinding
 import com.example.clswrk_androidprojekt.presentation.auth.OnBoardingFragment
 import com.example.clswrk_androidprojekt.utils.CoroutinesExample
+import com.example.clswrk_androidprojekt.utils.NavHelper.navigated
+import com.example.clswrk_androidprojekt.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
@@ -37,22 +40,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //это тип у нас метод выполняется теперь в потоке . Прекол канешна.
+
         viewModel.showUserData()
 
-CoroutinesExample().testCoroutineCancel()
-
-        // это юзаем для долговременных акций. так мы еще добавляем деспатчер
-//     CoroutineScope( Dispatchers.IO).launch {
-//
-//     }
 
 
-        // fmReplace(parentFragmentManager,OnBoardingFragment(),false)
+
+
         binding.dtnGoToOnBoarding.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_container, OnBoardingFragment())
-                .commit()
+            replaceGraph(R.navigation.main_graph)
+            // findNavController().setGraph(R.navigation.main_graph)
+
+
         }
 
         viewModel.userCreds.observe(viewLifecycleOwner) {

@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import com.example.clswrk_androidprojekt.R
 
 import com.example.clswrk_androidprojekt.databinding.FragmentOnBoardingBinding
-import com.example.clswrk_androidprojekt.presentation.view.home.ItemsFragment
-
-import com.example.clswrk_androidprojekt.utils.NavigationExt.fmReplace
+import com.example.clswrk_androidprojekt.utils.NavHelper.navigateWithDelitedBackStack
 
 
 class OnBoardingFragment : Fragment() {
@@ -38,7 +39,17 @@ class OnBoardingFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it != null) {
-                fmReplace(parentFragmentManager, ItemsFragment(), false)
+                val navOptions = NavOptions.Builder()
+                navigateWithDelitedBackStack(
+                    it.destinationId,
+                    it.removeFragmentId
+
+                )
+
+//                findNavController().navigate(R.id.action_onBoardingFragment_to_itemsFragment,
+//                    null,
+//                    navOptions.build())
+
                 viewModel.finishPerformed()
             }
         }
