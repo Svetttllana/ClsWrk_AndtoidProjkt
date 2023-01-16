@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/onBoardingFragment"
+android:title="@string/onboardingfragment"
+        android:icon="@drawable/cat_image"
+/>
+    <item
+
+        android:id="@+id/itemsFragment"
+        android:title="@string/itemsfragment"
+        android:icon="@drawable/dog_image"
+
+        />
+
+
+</menu>

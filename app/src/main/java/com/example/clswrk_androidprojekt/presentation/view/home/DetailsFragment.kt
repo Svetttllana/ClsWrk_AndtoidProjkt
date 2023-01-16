@@ -26,12 +26,12 @@ class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding: FragmentDetailsBinding get() = _binding!!
 
-    private val viewModel : DetailsViewModel by viewModels ()
+    private val viewModel: DetailsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-      _binding =FragmentDetailsBinding.inflate(inflater)
+        _binding = FragmentDetailsBinding.inflate(inflater)
         return binding.root
     }
 
@@ -45,7 +45,7 @@ class DetailsFragment : Fragment() {
         val bundle = arguments
 
 
-        bundle?.let{safeBundle ->
+        bundle?.let { safeBundle ->
             val name = safeBundle.getString(NAME)
             val date = safeBundle.getString(DATE)
             val image = safeBundle.getInt(IMAGE_VIEW)
@@ -57,20 +57,23 @@ class DetailsFragment : Fragment() {
         }
 
 
-       binding.btnLogaut.setOnClickListener{
+        binding.btnLogaut.setOnClickListener {
             viewModel.logautUser()
         }
 
-        viewModel.nav.observe(viewLifecycleOwner){
+        viewModel.nav.observe(viewLifecycleOwner) {
 
             if (it != null) {
-                replaceGraph(it)
+                val navGraph = findNavController().navInflater.inflate(
+                    it
+                )
+                navGraph.startDestination = R.id.loginFragment
+                findNavController().graph = navGraph
+
             }
 
         }
 
     }
-
-
 
 }
