@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_binding!!.root)
-        setContentView(R.layout.activity_main)
 
 
         viewModel.checkUserExists()
