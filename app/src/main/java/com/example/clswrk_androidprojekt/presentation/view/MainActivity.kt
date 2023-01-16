@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_binding.root)
-        setContentView(R.layout.activity_main)
+
 actionBar?.setDisplayHomeAsUpEnabled(false)
 
         viewModel.checkUserExists()
