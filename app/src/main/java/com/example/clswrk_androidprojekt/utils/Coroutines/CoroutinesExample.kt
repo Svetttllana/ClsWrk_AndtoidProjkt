@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.utils
+package com.example.clswrk_androidprojekt.utils.Coroutines
 
 import android.util.Log
 import androidx.lifecycle.lifecycleScope

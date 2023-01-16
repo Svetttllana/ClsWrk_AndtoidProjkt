@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-// во фрагменте мы ничего в поток не ставим!!!!!!!!!!!!
+
 class LoginViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 

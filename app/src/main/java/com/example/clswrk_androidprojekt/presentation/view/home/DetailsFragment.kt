@@ -66,7 +66,7 @@ class DetailsFragment : Fragment() {
             if (it != null) {
                 replaceGraph(it)
             }
-           //findNavController().setGraph(R.navigation.auth_graph)
+
         }
 
     }
