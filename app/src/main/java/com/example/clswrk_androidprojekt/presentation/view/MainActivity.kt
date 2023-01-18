@@ -13,7 +13,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.databinding.ActivityMainBinding
-import com.example.clswrk_androidprojekt.presentation.auth.LoginFragment
+import com.example.clswrk_androidprojekt.presentation.view.auth.auth.LoginFragment
 import com.example.clswrk_androidprojekt.presentation.view.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
@@ -61,14 +61,6 @@ actionBar?.setDisplayHomeAsUpEnabled(false)
 
         _binding.buttomNavigation.setupWithNavController(navController)
 
-        val btnav = AppBarConfiguration(
-            setOf(R.id.onBoardingFragment, R.id.itemsFragment)
-        )
-
-        NavigationUI.setupActionBarWithNavController(this, navController, btnav)
-
-
-
 
         viewModel.visibility.observe(this) {
 
@@ -92,9 +84,6 @@ actionBar?.setDisplayHomeAsUpEnabled(false)
         }
 
         return  navGraph
-
-
-
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.auth
+package com.example.clswrk_androidprojekt.presentation.view.auth.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

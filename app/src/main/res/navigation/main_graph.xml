@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.example.clswrk_androidprojekt.presentation.auth.OnBoardingFragment"
+        android:name="com.example.clswrk_androidprojekt.presentation.view.auth.auth.OnBoardingFragment"
         android:label="OnBoardingFragment" >
         <action
             android:id="@+id/action_onBoardingFragment_to_itemsFragment"

@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.auth
+package com.example.clswrk_androidprojekt.presentation.view.auth.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

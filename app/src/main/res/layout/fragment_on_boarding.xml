@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.clswrk_androidprojekt.presentation.auth.OnBoardingViewModel" />
+            type="com.example.clswrk_androidprojekt.presentation.view.auth.auth.OnBoardingViewModel" />
 
 
     </data>
