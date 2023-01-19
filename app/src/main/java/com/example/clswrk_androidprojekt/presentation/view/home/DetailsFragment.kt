@@ -1,5 +1,6 @@
 package com.example.clswrk_androidprojekt.presentation.view.home
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.example.clswrk_androidprojekt.databinding.FragmentDetailsBinding
 import com.example.clswrk_androidprojekt.utils.BundleConstans.DATE
 import com.example.clswrk_androidprojekt.utils.BundleConstans.NAME
 import com.example.clswrk_androidprojekt.utils.NavHelper.replaceGraph
+import com.squareup.picasso.Picasso
 
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +32,7 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailsBinding.inflate(inflater)
         return binding.root
     }
@@ -46,13 +48,14 @@ class DetailsFragment : Fragment() {
 
 
         bundle?.let { safeBundle ->
-            val name = safeBundle.getString(NAME)
-            val date = safeBundle.getString(DATE)
-            val image = safeBundle.getInt(IMAGE_VIEW)
 
-            detailsName.text = name
-            detailsDate.text = date
-            detailsImage.setBackgroundResource(image)
+            val description = safeBundle.getString("description")
+            val image = safeBundle.getString(IMAGE_VIEW)
+
+
+            detailsDate.text = description
+            Picasso.get().load(Uri.parse(image)).into(detailsImage)
+
 
         }
 

@@ -3,10 +3,12 @@ package com.example.clswrk_androidprojekt.presentation.view.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.domain.items.ItemsInteractor
 import com.example.clswrk_androidprojekt.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,13 +23,22 @@ class ItemsViewModel @Inject constructor
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     private val _bundle = MutableLiveData<NavigateWithBundle?>()
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
     fun getData() {
-        val listItems = itemsInteractor.getData()
+        viewModelScope.launch {
+            try {
+                val listItems = itemsInteractor.getData()
+                _items.value = listItems
+            } catch (e: Exception) {
+                _error.value= e.message.toString()
+            }
+        }
 
-        _items.value = listItems
 
     }
 
@@ -36,9 +47,10 @@ class ItemsViewModel @Inject constructor
         _msg.value = R.string.image_view_clicked
     }
 
-    fun elementClicked(name: String, date: String, imageView: Int) {
+    fun elementClicked(description: String, image: String) {
 
-        _bundle.value = NavigateWithBundle(name = name, date = date, image = imageView, destinationiD = R.id.action_itemsFragment_to_detailsFragment)
+        _bundle.value = NavigateWithBundle(
+           description=description,image=image, destinationiD = R.id.action_itemsFragment_to_detailsFragment)
     }
 
 
@@ -50,10 +62,9 @@ class ItemsViewModel @Inject constructor
 }
 
 data class NavigateWithBundle(
-    val image: Int,
-    val name: String,
-    val date: String,
-    val destinationiD:Int
+    val image: String,
+    val description: String,
+     val destinationiD:Int
 
 )
 

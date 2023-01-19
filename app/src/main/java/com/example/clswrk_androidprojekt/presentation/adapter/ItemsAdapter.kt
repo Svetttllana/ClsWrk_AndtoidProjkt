@@ -1,4 +1,5 @@
 package com.example.clswrk_androidprojekt.presentation.adapter
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
@@ -9,24 +10,25 @@ import com.example.clswrk_androidprojekt.model.ItemsModel
 
 class ItemsAdapter(
     private val itemsListener: ItemsListener
-): RecyclerView.Adapter<ItemsViewHolder>() {
-
-
+) : RecyclerView.Adapter<ItemsViewHolder>() {
 
 
     //лист приватный виден ток в адапторе
     private var listItems = mutableListOf<ItemsModel>()
+
     // это метод по умолчанию и так его принято называть
-        //инициализируем вот так через сеттер
-    fun submitList(list: List<ItemsModel>){
-        this.listItems=list.toMutableList()
+    //инициализируем вот так через сеттер
+    fun submitList(list: List<ItemsModel>) {
+        this.listItems.clear()
+        this.listItems = list.toMutableList()
+        notifyDataSetChanged()
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
 
-       val view= LayoutInflater.from(parent.context).inflate(R.layout.item_fruit,parent,false)
-        return ItemsViewHolder(view,itemsListener)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fruit, parent, false)
+        return ItemsViewHolder(view, itemsListener)
     }
 
     // тут прост передаем данные

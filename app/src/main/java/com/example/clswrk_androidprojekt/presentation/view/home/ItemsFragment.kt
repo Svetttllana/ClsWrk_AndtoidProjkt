@@ -61,9 +61,8 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.bundle.observe(viewLifecycleOwner) { it ->
             if (it != null) {
                 val bundle = Bundle()
-                bundle.putString(NAME, it.name)
-                bundle.putString(DATE, it.date)
-                bundle.putInt(IMAGE_VIEW, it.image)
+                bundle.putString("description", it.description)
+                bundle.putString(IMAGE_VIEW, it.image)
 
 
                 navigateWithBandl(
@@ -72,6 +71,10 @@ class ItemsFragment : Fragment(), ItemsListener {
                 )
 
                 viewModel.userNavigated()
+            }
+
+            viewModel.error.observe(viewLifecycleOwner) {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -83,8 +86,8 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.imageViewClicked()
     }
 
-    override fun onElementSelected(name: String, date: String, imageView: Int) {
-        viewModel.elementClicked(name, date, imageView)
+    override fun onElementSelected(description: String, image: String) {
+        viewModel.elementClicked(description, image)
     }
 
     companion object {

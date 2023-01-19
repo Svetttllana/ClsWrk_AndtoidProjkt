@@ -6,6 +6,6 @@ interface ItemsListener {
 
 
 
-    fun onElementSelected(name:String , date:String , imageView:Int)
+    fun onElementSelected(description:String  , image:String)
 
 }
