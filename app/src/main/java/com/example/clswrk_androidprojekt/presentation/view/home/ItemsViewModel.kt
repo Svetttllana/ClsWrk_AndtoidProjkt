@@ -32,12 +32,19 @@ class ItemsViewModel @Inject constructor
     fun getData() {
         viewModelScope.launch {
             try {
-                val listItems = itemsInteractor.getData()
-                _items.value = listItems
+            itemsInteractor.getData()
+              val listItems=itemsInteractor.showData()
+                _items.value=listItems
             } catch (e: Exception) {
                 _error.value= e.message.toString()
             }
         }
+
+
+    }
+
+    fun deliteItem(description: String){
+        viewModelScope.launch {  itemsInteractor. deliteItemByDescription(description) }
 
 
     }

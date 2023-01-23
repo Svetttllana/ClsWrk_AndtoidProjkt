@@ -33,4 +33,9 @@
             android:id="@+id/action_detailsFragment_to_itemsFragment"
             app:destination="@id/itemsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.example.clswrk_androidprojekt.presentation.view.home.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

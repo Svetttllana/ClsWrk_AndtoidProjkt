@@ -42,11 +42,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.842" />
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="107dp"
-            android:layout_height="35dp"
 
+        <ImageView
+            android:id="@+id/delite"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_delite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_name"

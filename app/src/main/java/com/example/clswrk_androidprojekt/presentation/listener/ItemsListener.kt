@@ -8,4 +8,6 @@ interface ItemsListener {
 
     fun onElementSelected(description:String  , image:String)
 
+
+    fun onDeliteClicked(description: String)
 }

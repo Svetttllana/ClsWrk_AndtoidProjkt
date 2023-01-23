@@ -14,5 +14,11 @@ android:title="@string/onboardingfragment"
 
         />
 
+    <item
+        android:id="@+id/searchFragment"
+        android:title="search Fragment"
+        android:icon="@drawable/pineaple"
+/>
+
 
 </menu>

@@ -19,6 +19,7 @@ class ItemsViewHolder(
 
         val name = view.findViewById<TextView>(R.id.tv_name)
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
+        val delite = view.findViewById<ImageView>(R.id.delite)
 //        val date = view.findViewById<TextView>(R.id.tv_date)
 
         name.text = itemsModel.description
@@ -38,6 +39,10 @@ class ItemsViewHolder(
 
             )
 
+        }
+
+        delite.setOnClickListener{
+            itemsListener.onDeliteClicked(itemsModel.description)
         }
 
 

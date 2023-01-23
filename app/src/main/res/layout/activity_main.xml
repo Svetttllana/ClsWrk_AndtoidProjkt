@@ -13,9 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/botton_navigation_menu"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.918"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="337dp" />
+        tools:layout_editor_absoluteY="337dp"
+        tools:ignore="MissingConstraints" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"

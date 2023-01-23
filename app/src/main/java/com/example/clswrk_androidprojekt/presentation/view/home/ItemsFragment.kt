@@ -90,6 +90,10 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.elementClicked(description, image)
     }
 
+    override fun onDeliteClicked(description: String) {
+        viewModel.deliteItem(description)
+    }
+
     companion object {
 
         internal val DATE = "date"
