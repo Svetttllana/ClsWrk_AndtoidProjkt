@@ -32,20 +32,16 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(p0: String?): Boolean {
+            override fun onQueryTextSubmit(q0: String?): Boolean {
                 return false
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                viewModel.findItem(p0 ?: "")
+            override fun onQueryTextChange(q0: String?): Boolean {
                 return false
             }
-
-        }
-        )
+        })
         viewModel.item.observe(viewLifecycleOwner) {
             binding.description.text = it.description
             Picasso.get().load(Uri.parse(it.image)).into(binding.image)
