@@ -1,5 +1,4 @@
 package com.example.clswrk_androidprojekt.presentation.view.auth.auth
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,13 +10,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.clswrk_androidprojekt.R
 
 import com.example.clswrk_androidprojekt.databinding.FragmentOnBoardingBinding
-import com.example.clswrk_androidprojekt.utils.NavHelper.navigateWithDelitedBackStack
 
 
+import com.example.clswrk_androidprojekt.utils.NavHelper.navigated
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class OnBoardingFragment : Fragment() {
 
     private val viewModel: OnBoardingViewModel by viewModels()
-
 
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding: FragmentOnBoardingBinding get() = _binding!!
@@ -36,16 +37,10 @@ class OnBoardingFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
-
-        viewModel.nav.observe(viewLifecycleOwner) {
+        viewModel.nav. observe(viewLifecycleOwner) {
             if (it != null) {
-                val navOptions = NavOptions.Builder()
-                navigateWithDelitedBackStack(
-                    it.destinationId,
-                    it.removeFragmentId
+                navigated(it.removeFragmentId)
 
-                )
 
 //                findNavController().navigate(R.id.action_onBoardingFragment_to_itemsFragment,
 //                    null,

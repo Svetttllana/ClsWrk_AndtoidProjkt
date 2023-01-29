@@ -1,6 +1,7 @@
 package com.example.clswrk_androidprojekt.domain.items
 
-import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.domain.model.FavoriteModel
+import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor (
@@ -20,10 +21,19 @@ class ItemsInteractor @Inject constructor (
 
     }
 
-    suspend fun findItem(searchText:String):ItemsModel{
+    suspend fun findItem(searchText:String): ItemsModel {
       return  itemsRepository.findItemByDescription(searchText)
+    }
 
 
+    suspend fun onFavClicked(description:String){
+        val foundItem = findItem(description)
+        itemsRepository.favClicked(foundItem)
+
+    }
+
+    suspend fun getFavorites():List<FavoriteModel>{
+        return itemsRepository.getFavorites()
     }
 
 }

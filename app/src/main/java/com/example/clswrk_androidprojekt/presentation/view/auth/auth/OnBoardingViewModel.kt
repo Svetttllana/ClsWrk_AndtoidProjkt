@@ -4,8 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clswrk_androidprojekt.R
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class OnBoardingViewModel : ViewModel() {
+@HiltViewModel
+class OnBoardingViewModel @Inject constructor()
+    : ViewModel() {
 
     private val _nav = MutableLiveData<navToItems?>()
     val nav: LiveData<navToItems?> = _nav
@@ -20,8 +24,6 @@ class OnBoardingViewModel : ViewModel() {
     fun finishPerformed() {
         _nav.value = null
     }
-
-
 
 }
 

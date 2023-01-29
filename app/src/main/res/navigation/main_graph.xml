@@ -15,27 +15,25 @@
     </fragment>
     <fragment
         android:id="@+id/itemsFragment"
-        android:name="com.example.clswrk_androidprojekt.presentation.view.home.ItemsFragment"
+        android:name="com.example.clswrk_androidprojekt.presentation.view.home.items.ItemsFragment"
         android:label="ItemsFragment" >
         <action
             android:id="@+id/action_itemsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
-        <action
-            android:id="@+id/action_itemsFragment_to_onBoardingFragment"
-            app:destination="@id/onBoardingFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.clswrk_androidprojekt.presentation.view.home.DetailsFragment"
+        android:name="com.example.clswrk_androidprojekt.presentation.view.home.items.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
-        <action
-            android:id="@+id/action_detailsFragment_to_itemsFragment"
-            app:destination="@id/itemsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_details" />
     <fragment
         android:id="@+id/searchFragment2"
-        android:name="com.example.clswrk_androidprojekt.presentation.view.home.SearchFragment"
+        android:name="com.example.clswrk_androidprojekt.presentation.view.home.items.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.clswrk_androidprojekt.presentation.view.home.items.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

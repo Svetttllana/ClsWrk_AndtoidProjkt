@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.presentation.listener.ItemsListener
-import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import com.squareup.picasso.Picasso
 
 class ItemsViewHolder(
@@ -20,7 +20,7 @@ class ItemsViewHolder(
         val name = view.findViewById<TextView>(R.id.tv_name)
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
         val delite = view.findViewById<ImageView>(R.id.delite)
-//        val date = view.findViewById<TextView>(R.id.tv_date)
+        val fav = view.findViewById<ImageView>(R.id.btnFav)
 
         name.text = itemsModel.description
         Picasso.get().load(Uri.parse(itemsModel.image)).into(imageView)
@@ -36,15 +36,17 @@ class ItemsViewHolder(
             itemsListener.onElementSelected(
                 itemsModel.description,
                 itemsModel.image
-
             )
-
         }
 
-        delite.setOnClickListener{
+        delite.setOnClickListener {
             itemsListener.onDeliteClicked(itemsModel.description)
         }
 
+        fav.setOnClickListener {
+            itemsListener.onFavClicked(itemsModel.description)
+
+        }
 
     }
 

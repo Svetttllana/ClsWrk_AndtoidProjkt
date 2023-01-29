@@ -7,16 +7,20 @@ import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
+
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
+
 import androidx.navigation.ui.setupWithNavController
 import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.databinding.ActivityMainBinding
-import com.example.clswrk_androidprojekt.presentation.view.auth.auth.LoginFragment
-import com.example.clswrk_androidprojekt.presentation.view.home.HomeFragment
+
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
+import com.example.clswrk_androidprojekt.databinding.ActivityMainBinding
+
+
+
+
+
 
 @AndroidEntryPoint
 
@@ -35,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_binding.root)
 
-actionBar?.setDisplayHomeAsUpEnabled(false)
+//actionBar?.setDisplayHomeAsUpEnabled(false)
 
         viewModel.checkUserExists()
 
@@ -78,7 +82,9 @@ actionBar?.setDisplayHomeAsUpEnabled(false)
 
         val random = (1..3).random()
         if (random == 1) {
-            navGraph.startDestination = R.id.loginFragment
+
+
+            navGraph.startDestination= R.id.loginFragment
         } else {
             navGraph.startDestination = R.id.homeFragment
         }

@@ -20,14 +20,14 @@ object NavHelper {
 
     }
 
-    fun Fragment.navigateWithDelitedBackStack(destinationId: Int, fragmentToRemove:Int){
-        val navOptions = NavOptions.Builder()
-        navOptions.setPopUpTo(fragmentToRemove,true)
-        findNavController().navigate(destinationId,null, navOptions.build())
-
-
-
-    }
+//    fun Fragment.navigateWithDelitedBackStack(destinationId: Int, fragmentToRemove:Int){
+//        val navOptions = NavOptions.Builder()
+//        navOptions.setPopUpTo(fragmentToRemove,true)
+//        findNavController().navigate(destinationId,null, navOptions.build())
+//
+//
+//
+//    }
 
 }
 

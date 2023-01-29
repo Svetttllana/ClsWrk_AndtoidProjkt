@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view.home
+package com.example.clswrk_androidprojekt.presentation.view.home.items
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

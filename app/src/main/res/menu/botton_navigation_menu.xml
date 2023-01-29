@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/onBoardingFragment"
-android:title="@string/onboardingfragment"
-        android:icon="@drawable/cat_image"
+        android:id="@+id/favoritesFragment"
+android:title="@string/favorites"
+        android:icon="@drawable/image_apple"
 />
     <item
 
         android:id="@+id/itemsFragment"
         android:title="@string/itemsfragment"
-        android:icon="@drawable/dog_image"
+        android:icon="@drawable/image_heart"
 
         />
 
     <item
-        android:id="@+id/searchFragment"
-        android:title="search Fragment"
-        android:icon="@drawable/pineaple"
+        android:id="@+id/searchFragment2"
+        android:title="@string/search_fragment"
+        android:icon="@drawable/ic_delite"
 />
 
 

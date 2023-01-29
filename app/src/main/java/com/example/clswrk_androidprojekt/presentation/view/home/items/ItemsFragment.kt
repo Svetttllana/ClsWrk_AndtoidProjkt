@@ -1,9 +1,7 @@
-package com.example.clswrk_androidprojekt.presentation.view.home
+package com.example.clswrk_androidprojekt.presentation.view.home.items
 
 
 import com.example.clswrk_androidprojekt.presentation.listener.ItemsListener
-
-
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clswrk_androidprojekt.*
@@ -21,9 +18,6 @@ import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
 import com.example.clswrk_androidprojekt.utils.navigateWithBandl
 
 import dagger.hilt.android.AndroidEntryPoint
-
-//Dont use because it is cringe
-const val NAME = "name"
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
@@ -58,15 +52,15 @@ class ItemsFragment : Fragment(), ItemsListener {
             Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
             Log.w("str", getString(msg))
         }
-        viewModel.bundle.observe(viewLifecycleOwner) { it ->
-            if (it != null) {
+        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
                 val bundle = Bundle()
-                bundle.putString("description", it.description)
-                bundle.putString(IMAGE_VIEW, it.image)
+                bundle.putString("description", navBundle.description)
+                bundle.putString(IMAGE_VIEW, navBundle.image)
 
 
                 navigateWithBandl(
-                    it.destinationiD,
+                    navBundle.destinationiD,
                     bundle
                 )
 
@@ -94,10 +88,11 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.deliteItem(description)
     }
 
-    companion object {
-
-        internal val DATE = "date"
+    override fun onFavClicked(description: String) {
+        viewModel.onFavClicked(description)
     }
+
+
 }
 
 

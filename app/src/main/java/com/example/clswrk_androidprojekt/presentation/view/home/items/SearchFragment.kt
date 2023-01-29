@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view.home
+package com.example.clswrk_androidprojekt.presentation.view.home.items
 
 import android.net.Uri
 import android.os.Bundle
@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.widget.SearchView
 import androidx.fragment.app.viewModels
-import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.databinding.FragmentDetailsBinding
 import com.example.clswrk_androidprojekt.databinding.FragmentSearchBinding
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
@@ -39,7 +39,11 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(q0: String?): Boolean {
+
+                viewModel.findItem(q0?:"")
+
                 return false
+
             }
         })
         viewModel.item.observe(viewLifecycleOwner) {

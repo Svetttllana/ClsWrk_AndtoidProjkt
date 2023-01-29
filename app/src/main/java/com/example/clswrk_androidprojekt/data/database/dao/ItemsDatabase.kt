@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.clswrk_androidprojekt.data.database.FavoritesEntity
 import com.example.clswrk_androidprojekt.data.database.ItemsEntity
 
 
-@Database(entities = [ItemsEntity::class], version = 1, exportSchema = false)
+@Database(entities = [ItemsEntity::class, FavoritesEntity::class], version = 4, exportSchema = false)
 abstract class ItemsDatabase:RoomDatabase() {
 
  abstract fun getItemsDAO():ItemsDAO
@@ -25,21 +28,18 @@ abstract class ItemsDatabase:RoomDatabase() {
                     ItemsDatabase::class.java,
                     DATABASE_NAME
                 )
+                .addMigrations(MIGRATION_3_TO_4)
                 .build()
                 .also { DB_INSTANCE = it }
 
         }
 
-
-
-
-
-
-
-
-
-
-
+         val MIGRATION_3_TO_4 = object : Migration(3,4){
+             override fun migrate(database: SupportSQLiteDatabase) {
+                 database.execSQL("ALTER TABLE ItemsEntity RENAME COLUMN imageUrl3 TO imageUrl4")
+             }
+         }
 
     }
+
 }

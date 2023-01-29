@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.data
+package com.example.clswrk_androidprojekt.data.api
 
 import com.example.clswrk_androidprojekt.data.model.ItemsResponse
 import retrofit2.Response

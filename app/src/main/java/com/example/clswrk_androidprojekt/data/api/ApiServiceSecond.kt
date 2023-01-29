@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.data
+package com.example.clswrk_androidprojekt.data.api
 
 import com.example.clswrk_androidprojekt.data.model.PhotoResponce
 import retrofit2.Response

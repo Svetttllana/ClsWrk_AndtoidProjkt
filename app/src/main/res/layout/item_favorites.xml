@@ -2,12 +2,10 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     app:cardCornerRadius="20dp"
     android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,53 +19,34 @@
             android:layout_height="61dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintHorizontal_bias="0.104"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:contentDescription="@string/todo" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="59dp"
             android:layout_height="28dp"
             android:layout_marginStart="48dp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/iv_image"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.842" />
-
+            app:layout_constraintVertical_bias="0.848" />
 
         <ImageView
             android:id="@+id/delite"
-            android:layout_width="54dp"
-            android:layout_height="59dp"
-            android:background="@drawable/ic_baseline_delete_24"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_delite_favorities"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.882"
             app:layout_constraintStart_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:contentDescription="@string/todo"  />
-
-        <ImageView
-            android:id="@+id/btnFav"
-            android:layout_width="53dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_add_faf"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/delite"
-            app:layout_constraintHorizontal_bias="0.885"
-            app:layout_constraintStart_toEndOf="@+id/tv_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.454"
-            android:contentDescription="@string/todo"  />
-
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

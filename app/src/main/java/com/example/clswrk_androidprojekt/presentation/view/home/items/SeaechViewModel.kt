@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view.home
+package com.example.clswrk_androidprojekt.presentation.view.home.items
 
 import android.util.Log
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.clswrk_androidprojekt.domain.items.ItemsInteractor
-import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,9 +28,10 @@ class SeaechViewModel @Inject constructor(
     fun findItem(searchText:String){
         viewModelScope.launch {
             try {
-            _item.value= itemsInteractor.findItem(searchText)
+                val foundItem = itemsInteractor.findItem(searchText)
+            _item.value= foundItem
             }catch (e: Exception){
-                Log.w("exception", "not item search")
+                Log.w("exception", e.toString())
             }
 
         }

@@ -12,4 +12,7 @@
     <string name="homefragment">HomeFragment</string>
     <string name="itemsfragment">ItemsFragment</string>
     <string name="onboardingfragment">onBoardingFragment</string>
+    <string name="favorites">Favorites</string>
+    <string name="search_fragment">search Fragment</string>
+    <string name="todo">TODO</string>
 </resources>

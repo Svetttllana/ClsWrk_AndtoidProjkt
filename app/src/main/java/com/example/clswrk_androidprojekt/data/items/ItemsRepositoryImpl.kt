@@ -1,14 +1,14 @@
 package com.example.clswrk_androidprojekt.data.items
 
 import android.util.Log
-import androidx.lifecycle.Transformations.map
-import com.example.clswrk_androidprojekt.R
-import com.example.clswrk_androidprojekt.data.ApiService
-import com.example.clswrk_androidprojekt.data.ApiServiceSecond
+import com.example.clswrk_androidprojekt.data.api.ApiService
+import com.example.clswrk_androidprojekt.data.api.ApiServiceSecond
+import com.example.clswrk_androidprojekt.data.database.FavoritesEntity
 import com.example.clswrk_androidprojekt.data.database.ItemsEntity
 import com.example.clswrk_androidprojekt.data.database.dao.ItemsDAO
 import com.example.clswrk_androidprojekt.domain.items.ItemsRepository
-import com.example.clswrk_androidprojekt.model.ItemsModel
+import com.example.clswrk_androidprojekt.domain.model.FavoriteModel
+import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -26,10 +26,9 @@ class ItemsRepositoryImpl @Inject constructor(
 
         return withContext(Dispatchers.IO) {
             if (!itemsDAO.doesItemsEntityExist()) {
-                Log.w("getData","data not exists")
-
-
+                 Log.w("getData","data not exists")
                 val response = apiService.getData()
+                Log.w("Data", response.body()?.sampleList.toString())
                 response.body()?.sampleList?.let {
                     it.map {
                         val itemsEntity =
@@ -39,8 +38,6 @@ class ItemsRepositoryImpl @Inject constructor(
                     }
                 }
             }
-
-
         }
     }
 
@@ -54,15 +51,38 @@ class ItemsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deliteItemByDescription(description: String) {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             itemsDAO.deliteItemEntityByDescription(description)
         }
     }
 
     override suspend fun findItemByDescription(searchText: String): ItemsModel {
-//        return with(Dispatchers.IO){
-//            val itemsEntity = itemsDAO.findItementityByDescription(searchText)
-//        }
+        return withContext(Dispatchers.IO) {
+            val itemsEntity = itemsDAO.findItementityByDescription(searchText)
+            ItemsModel(itemsEntity.description, itemsEntity.imageUrl)
+        }
+    }
+
+    override suspend fun favClicked(itemsModel: ItemsModel) {
+        return withContext(Dispatchers.IO) {
+            itemsDAO.insertFavoritesEntity(
+                FavoritesEntity(
+                    Random().nextInt(),
+                    itemsModel.description,
+                    itemsModel.image
+                )
+            )
+        }
+
+    }
+
+    override suspend fun getFavorites(): List<FavoriteModel> {
+        return withContext(Dispatchers.IO) {
+            val favoritesEntity = itemsDAO.getFavoriteEntities()
+            favoritesEntity.map {
+                FavoriteModel(it.description, it.imageUrl)
+            }
+        }
     }
 }
 

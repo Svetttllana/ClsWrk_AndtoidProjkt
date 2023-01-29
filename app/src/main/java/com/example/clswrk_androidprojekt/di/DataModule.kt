@@ -2,8 +2,8 @@ package com.example.clswrk_androidprojekt.di
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
-import com.example.clswrk_androidprojekt.data.ApiService
-import com.example.clswrk_androidprojekt.data.ApiServiceSecond
+import com.example.clswrk_androidprojekt.data.api.ApiService
+import com.example.clswrk_androidprojekt.data.api.ApiServiceSecond
 import com.example.clswrk_androidprojekt.data.sharedprefer.SharedPreferencecHelper
 import com.example.clswrk_androidprojekt.data.auth.AutnRepositoryImpl
 import com.example.clswrk_androidprojekt.data.items.ItemsRepositoryImpl
@@ -17,7 +17,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Named
 
 @Module

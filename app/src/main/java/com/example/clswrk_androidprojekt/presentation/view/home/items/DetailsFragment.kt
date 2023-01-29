@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.presentation.view.home
+package com.example.clswrk_androidprojekt.presentation.view.home.items
 
 import android.net.Uri
 import android.os.Bundle
@@ -15,9 +15,6 @@ import com.example.clswrk_androidprojekt.utils.BundleConstans.IMAGE_VIEW
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.databinding.FragmentDetailsBinding
 
-import com.example.clswrk_androidprojekt.utils.BundleConstans.DATE
-import com.example.clswrk_androidprojekt.utils.BundleConstans.NAME
-import com.example.clswrk_androidprojekt.utils.NavHelper.replaceGraph
 import com.squareup.picasso.Picasso
 
 import dagger.hilt.android.AndroidEntryPoint

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.clswrk_androidprojekt.R
 
 import com.example.clswrk_androidprojekt.databinding.FragmentLoginBinding
-import com.example.clswrk_androidprojekt.utils.NavHelper.navigateWithDelitedBackStack
+
 import com.example.clswrk_androidprojekt.utils.NavHelper.navigated
 
 import dagger.hilt.android.AndroidEntryPoint
