@@ -1,7 +1,7 @@
 package com.example.clswrk_androidprojekt.data.sharedprefer
 
 import android.content.SharedPreferences
-import com.example.clswrk_androidprojekt.model.UserModel
+import com.example.clswrk_androidprojekt.domain.model.UserModel
 import javax.inject.Inject
 
 class SharedPreferencecHelper @Inject constructor

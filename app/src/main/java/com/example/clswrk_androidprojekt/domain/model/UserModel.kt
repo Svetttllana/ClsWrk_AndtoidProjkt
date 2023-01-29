@@ -1,4 +1,4 @@
-package com.example.clswrk_androidprojekt.model
+package com.example.clswrk_androidprojekt.domain.model
 
 data class UserModel(
     val userName:String,

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.domain.auth.AuthInteractor
-import com.example.clswrk_androidprojekt.model.UserModel
+import com.example.clswrk_androidprojekt.domain.model.UserModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,6 +1,6 @@
 package com.example.clswrk_androidprojekt.domain.auth
 
-import com.example.clswrk_androidprojekt.model.UserModel
+import com.example.clswrk_androidprojekt.domain.model.UserModel
 import javax.inject.Inject
 
 class AuthInteractor @Inject constructor(

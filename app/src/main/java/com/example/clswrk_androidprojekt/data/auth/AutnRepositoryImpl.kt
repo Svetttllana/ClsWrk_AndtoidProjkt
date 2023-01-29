@@ -2,7 +2,7 @@ package com.example.clswrk_androidprojekt.data.auth
 
 import com.example.clswrk_androidprojekt.data.sharedprefer.SharedPreferencecHelper
 import com.example.clswrk_androidprojekt.domain.auth.AuthRepository
-import com.example.clswrk_androidprojekt.model.UserModel
+import com.example.clswrk_androidprojekt.domain.model.UserModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

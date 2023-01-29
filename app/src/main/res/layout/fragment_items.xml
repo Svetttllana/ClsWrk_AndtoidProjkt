@@ -6,6 +6,7 @@
 android:background="#8caba8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".presentation.view.home.items.ItemsFragment"
     >
 
 
