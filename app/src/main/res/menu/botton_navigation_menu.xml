@@ -10,7 +10,7 @@ android:title="@string/favorites"
 
         android:id="@+id/itemsFragment"
         android:title="@string/itemsfragment"
-        android:icon="@drawable/image_heart"
+        android:icon="@drawable/car_ui_icon_edit"
 
         />
 

@@ -17,11 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 import com.example.clswrk_androidprojekt.databinding.ActivityMainBinding
 
-
-
-
-
-
 @AndroidEntryPoint
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
@@ -51,6 +46,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
 
         navController = navHostFragment.navController
+////////////////////////////////////////////////////////////
 
         viewModel.nav.observe(this) {
 
@@ -70,8 +66,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
             _binding.buttomNavigation.visibility = it
         }
-
-
 
     }
 

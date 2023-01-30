@@ -24,7 +24,6 @@ class MainViewModel @Inject constructor(
     val visibility: LiveData<Int> = _visibility
 
 
-
     fun checkUserExists() {
         viewModelScope.launch {
             val doesUserExist = authInteractor.checkUserExists()
