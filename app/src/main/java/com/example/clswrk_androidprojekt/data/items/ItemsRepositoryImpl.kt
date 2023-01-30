@@ -10,6 +10,9 @@ import com.example.clswrk_androidprojekt.domain.items.ItemsRepository
 import com.example.clswrk_androidprojekt.domain.model.FavoriteModel
 import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.util.*
 
@@ -25,27 +28,31 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun getData() {
 
         return withContext(Dispatchers.IO) {
-            if (!itemsDAO.doesItemsEntityExist()) {
-                 Log.w("getData","data not exists")
-                val response = apiService.getData()
-                Log.w("Data", response.body()?.sampleList.toString())
-                response.body()?.sampleList?.let {
-                    it.map {
-                        val itemsEntity =
-                            ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
-                        itemsDAO.insertItemsEntity(itemsEntity)
+            itemsDAO.doesItemsEntityExist().collect {
+                if (!it) {
+                    Log.w("getData", "data not exists")
+                    val response = apiService.getData()
+                    Log.w("Data", response.body()?.sampleList.toString())
+                    response.body()?.sampleList?.let {
+                        it.map {
+                            val itemsEntity =
+                                ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
+                            itemsDAO.insertItemsEntity(itemsEntity)
 
+                        }
                     }
                 }
             }
         }
     }
 
-    override suspend fun showData(): List<ItemsModel> {
+    override suspend fun showData(): Flow<List<ItemsModel>> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map {
-                ItemsModel(it.description, it.imageUrl)
+            itemsEntity.map {itemsList ->
+                itemsList.map { item ->
+                    ItemsModel(item.description, item.imageUrl)
+                }
             }
         }
     }

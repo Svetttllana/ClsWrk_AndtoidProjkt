@@ -9,6 +9,9 @@ import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.domain.items.ItemsInteractor
 import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,8 +20,13 @@ class ItemsViewModel @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ) : ViewModel() {
 
-    private val _items = MutableLiveData<List<ItemsModel>>()
-    val items: LiveData<List<ItemsModel>> = _items
+
+//    private val _items = MutableLiveData<List<ItemsModel>>()
+//    val items: LiveData<List<ItemsModel>> = _items
+
+    val items = flow< Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData())} // когда видим emit значит от  произволит свою работу
+//  у liveData тоже есть метод emit
+
 
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
@@ -33,11 +41,24 @@ class ItemsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 itemsInteractor.getData()
-                _items.value = itemsInteractor.showData()
             } catch (e: Exception) {
                 _error.value = e.message.toString()
             }
         }
+
+//        viewModelScope.launch {
+//            try {
+//
+//                val listItems = itemsInteractor.showData()
+//                listItems.collect { it ->
+//                    _items.value =
+//                        it                                 //записали сюда значение которое получили из флоу
+//                }
+//
+//            } catch (e: Exception) {
+//                _error.value = e.message.toString()
+//            }
+//        }
     }
 
 
@@ -72,8 +93,8 @@ class ItemsViewModel @Inject constructor(
 
     fun onFavClicked(description: String) {
         viewModelScope.launch {
-          //  try {
-                itemsInteractor.onFavClicked(description)
+            //  try {
+            itemsInteractor.onFavClicked(description)
 //            }catch (e:Exception){
 //
 //            }

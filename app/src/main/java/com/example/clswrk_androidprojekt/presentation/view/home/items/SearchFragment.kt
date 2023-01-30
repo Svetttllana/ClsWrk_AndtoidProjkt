@@ -1,5 +1,6 @@
 package com.example.clswrk_androidprojekt.presentation.view.home.items
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import com.example.clswrk_androidprojekt.databinding.FragmentSearchBinding
+import com.example.clswrk_androidprojekt.presentation.view.home.service.MusicPlayer
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +34,18 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.btStart.setOnClickListener {
+            requireActivity().startService(Intent(requireContext(), MusicPlayer::class.java))
+
+        }
+
+        binding.btStop.setOnClickListener {
+            requireActivity().stopService(Intent(requireContext(), MusicPlayer::class.java))
+
+        }
+
+
+
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(q0: String?): Boolean {
@@ -40,7 +54,7 @@ class SearchFragment : Fragment() {
 
             override fun onQueryTextChange(q0: String?): Boolean {
 
-                viewModel.findItem(q0?:"")
+                viewModel.findItem(q0 ?: "")
 
                 return false
 

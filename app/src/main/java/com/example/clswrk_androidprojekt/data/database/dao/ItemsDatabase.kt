@@ -34,7 +34,7 @@ abstract class ItemsDatabase:RoomDatabase() {
 
         }
 
-         val MIGRATION_3_TO_4 = object : Migration(3,4){
+         private val MIGRATION_3_TO_4 = object : Migration(3,4){
              override fun migrate(database: SupportSQLiteDatabase) {
                  database.execSQL("ALTER TABLE ItemsEntity RENAME COLUMN imageUrl3 TO imageUrl4")
              }
