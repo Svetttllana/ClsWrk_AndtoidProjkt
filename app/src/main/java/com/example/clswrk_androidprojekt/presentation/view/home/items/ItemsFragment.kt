@@ -53,9 +53,7 @@ class ItemsFragment : Fragment(), ItemsListener {
 //        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.items.catch {
-                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }.collect{flowList->
+            viewModel.items.collect{flowList->
                 flowList.collect{list ->
                     itemsAdapter.submitList(list)
             }

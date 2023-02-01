@@ -13,7 +13,7 @@ class ItemsInteractor @Inject constructor (
     }
 
     suspend fun showData(): Flow<List<ItemsModel>> {
-        throw Exception()
+
         return  itemsRepository.showData()
     }
 
