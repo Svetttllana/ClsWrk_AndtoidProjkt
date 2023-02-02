@@ -33,8 +33,8 @@ class ItemsRepositoryImpl @Inject constructor(
                     Log.w("getData", "data not exists")
                     val response = apiService.getData()
                     Log.w("Data", response.body()?.sampleList.toString())
-                    response.body()?.sampleList?.let {
-                        it.map {
+                    response.body()?.sampleList?.let {sample->
+                        sample.map {
                             val itemsEntity =
                                 ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
                             itemsDAO.insertItemsEntity(itemsEntity)

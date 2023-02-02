@@ -20,13 +20,18 @@ class ItemsViewModel @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ) : ViewModel() {
 
-
-//    private val _items = MutableLiveData<List<ItemsModel>>()
-//    val items: LiveData<List<ItemsModel>> = _items
-
     val items = flow< Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData())} // когда видим emit значит от  произволит свою работу
 //  у liveData тоже есть метод emit
 
+
+    //#1
+    val getData = flow{emit(itemsInteractor.getData())}
+
+    //#2
+   private val _trigger = MutableLiveData<Flow<Unit>>()
+    val trigger = _trigger
+
+   // #3
 
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
@@ -37,28 +42,17 @@ class ItemsViewModel @Inject constructor(
     private val _bundle = MutableLiveData<NavigateWithBundle?>()
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
-    fun getData() {
-        viewModelScope.launch {
-            try {
-                itemsInteractor.getData()
-            } catch (e: Exception) {
-                _error.value = e.message.toString()
-            }
-        }
 
-//        viewModelScope.launch {
-//            try {
-//
-//                val listItems = itemsInteractor.showData()
-//                listItems.collect { it ->
-//                    _items.value =
-//                        it                                 //записали сюда значение которое получили из флоу
-//                }
-//
-//            } catch (e: Exception) {
-//                _error.value = e.message.toString()
-//            }
-//        }
+
+
+    fun getData(){
+        viewModelScope.launch {
+            _trigger.value = flow {emit(itemsInteractor.getData())}
+        }
+    }
+
+    suspend fun getDataSimple(){
+        itemsInteractor.getData()
     }
 
 

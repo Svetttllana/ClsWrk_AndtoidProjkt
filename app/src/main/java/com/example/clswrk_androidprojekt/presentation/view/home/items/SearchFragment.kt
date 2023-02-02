@@ -33,9 +33,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.btStart.setOnClickListener {
-            requireActivity().startService(Intent(requireContext(), MusicPlayer::class.java))
+            requireActivity().startForegroundService(Intent(requireContext(), MusicPlayer::class.java))
 
         }
 

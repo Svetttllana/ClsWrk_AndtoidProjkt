@@ -47,10 +47,27 @@ class ItemsFragment : Fragment(), ItemsListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
 
-        viewModel.getData()
-//        viewModel.items.observe(viewLifecycleOwner) { listItems ->
-//            itemsAdapter.submitList(listItems)
+
+
+        //sposob1
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.getData.collect()
 //        }
+
+        //sposob2
+//        viewModel.getData()
+//        viewModel.trigger.observe(viewLifecycleOwner){
+//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//                it.collect()
+//            }
+//        }
+
+        //sposob3
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.getDataSimple()
+        }
+
+
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.items.collect{flowList->
