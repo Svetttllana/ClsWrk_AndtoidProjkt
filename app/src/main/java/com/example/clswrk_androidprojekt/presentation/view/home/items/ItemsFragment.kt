@@ -49,25 +49,6 @@ class ItemsFragment : Fragment(), ItemsListener {
 
 
 
-        //sposob1
-//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//            viewModel.getData.collect()
-//        }
-
-        //sposob2
-//        viewModel.getData()
-//        viewModel.trigger.observe(viewLifecycleOwner){
-//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//                it.collect()
-//            }
-//        }
-
-        //sposob3
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
-        }
-
-
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.items.collect{flowList->

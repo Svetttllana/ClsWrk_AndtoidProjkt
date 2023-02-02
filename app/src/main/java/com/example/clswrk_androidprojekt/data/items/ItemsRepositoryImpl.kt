@@ -28,8 +28,8 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun getData() {
 
         return withContext(Dispatchers.IO) {
-            itemsDAO.doesItemsEntityExist().collect {
-                if (!it) {
+         val itemmExists =   itemsDAO.doesItemsEntityExist()
+                if (!itemmExists) {
                     Log.w("getData", "data not exists")
                     val response = apiService.getData()
                     Log.w("Data", response.body()?.sampleList.toString())
@@ -38,12 +38,11 @@ class ItemsRepositoryImpl @Inject constructor(
                             val itemsEntity =
                                 ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
                             itemsDAO.insertItemsEntity(itemsEntity)
-
                         }
                     }
                 }
             }
-        }
+
     }
 
     override suspend fun showData(): Flow<List<ItemsModel>> {

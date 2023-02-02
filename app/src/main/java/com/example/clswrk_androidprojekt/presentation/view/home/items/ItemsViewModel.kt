@@ -24,14 +24,9 @@ class ItemsViewModel @Inject constructor(
 //  у liveData тоже есть метод emit
 
 
-    //#1
-    val getData = flow{emit(itemsInteractor.getData())}
 
-    //#2
-   private val _trigger = MutableLiveData<Flow<Unit>>()
-    val trigger = _trigger
 
-   // #3
+
 
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
@@ -43,17 +38,6 @@ class ItemsViewModel @Inject constructor(
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
 
-
-
-    fun getData(){
-        viewModelScope.launch {
-            _trigger.value = flow {emit(itemsInteractor.getData())}
-        }
-    }
-
-    suspend fun getDataSimple(){
-        itemsInteractor.getData()
-    }
 
 
     fun imageViewClicked() {
