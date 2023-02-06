@@ -58,7 +58,8 @@ class DetailsFragment : Fragment() {
 
 
         binding.btnLogaut.setOnClickListener {
-            viewModel.logautUser()
+        binding.btnLogaut.isPressed = !it.isPressed
+        // viewModel.logautUser()
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {

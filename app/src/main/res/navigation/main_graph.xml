@@ -19,6 +19,8 @@
         android:label="ItemsFragment" >
         <action
             android:id="@+id/action_itemsFragment_to_detailsFragment"
+            app:enterAnim="@anim/slate_right"
+            app:exitAnim="@anim/slate_left"
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment

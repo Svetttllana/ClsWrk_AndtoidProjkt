@@ -60,7 +60,7 @@
             android:layout_height="54dp"
             android:layout_marginStart="20dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_add_faf"
+            android:background="@drawable/favorite_selected_backhround"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/delite"
             app:layout_constraintHorizontal_bias="0.312"
