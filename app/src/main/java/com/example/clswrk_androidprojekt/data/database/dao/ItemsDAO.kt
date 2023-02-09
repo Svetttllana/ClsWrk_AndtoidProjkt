@@ -29,11 +29,16 @@ interface ItemsDAO {
     @Query("SELECT * FROM ItemsEntity WHERE description =:searchText ")
     fun findItementityByDescription(searchText:String):ItemsEntity
 
+    @Query("UPDATE ItemsEntity SET isFavorite =:isFavorite WHERE description =:description ")
+    fun addToFavorite(description: String,isFavorite:Boolean
+         )
 
 
     @Insert(onConflict = IGNORE) // игнорирует когда конфликт происходит(ignore items if same)
     fun insertFavoritesEntity(favoritesEntity: FavoritesEntity)
     @Query("SELECT * FROM FavoritesEntity")
     fun getFavoriteEntities():List<FavoritesEntity>
+
+
 
 }

@@ -14,4 +14,7 @@ data class ItemsEntity(
     val description:String,
     @ColumnInfo( "imageUrl4")
     val imageUrl:String,
+    @ColumnInfo("isFavorite")
+    val isFavorite:Boolean?=false //используем вопросик и значение по умолчанию
+
 )

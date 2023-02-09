@@ -33,7 +33,7 @@ class ItemsRepositoryImpl @Inject constructor(
                     Log.w("getData", "data not exists")
                     val response = apiService.getData()
                     Log.w("Data", response.body()?.sampleList.toString())
-                    response.body()?.sampleList?.let {sample->
+                    response.body()?.sampleList?.let { sample ->
                         sample.map {
                             val itemsEntity =
                                 ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
@@ -49,9 +49,9 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun showData(): Flow<List<ItemsModel>> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map {itemsList ->
+            itemsEntity.map { itemsList ->
                 itemsList.map { item ->
-                    ItemsModel(item.description, item.imageUrl)
+                    ItemsModel(item.id,item.description, item.imageUrl, item.isFavorite ?: false)
                 }
             }
         }
@@ -66,15 +66,19 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun findItemByDescription(searchText: String): ItemsModel {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.findItementityByDescription(searchText)
-            ItemsModel(itemsEntity.description, itemsEntity.imageUrl)
+            ItemsModel(itemsEntity.id,itemsEntity.description, itemsEntity.imageUrl,itemsEntity.isFavorite ?: false)
         }
     }
 
-    override suspend fun favClicked(itemsModel: ItemsModel) {
+    override suspend fun favClicked(itemsModel: ItemsModel, isFavorite: Boolean) {
         return withContext(Dispatchers.IO) {
+            itemsDAO.addToFavorite(
+                itemsModel.description,
+                isFavorite
+            )
             itemsDAO.insertFavoritesEntity(
                 FavoritesEntity(
-                    Random().nextInt(),
+                    itemsModel.id,
                     itemsModel.description,
                     itemsModel.image
                 )

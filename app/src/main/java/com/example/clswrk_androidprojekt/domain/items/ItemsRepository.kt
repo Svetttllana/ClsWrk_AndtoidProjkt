@@ -5,7 +5,7 @@ import com.example.clswrk_androidprojekt.domain.model.FavoriteModel
 import com.example.clswrk_androidprojekt.domain.model.ItemsModel
 import kotlinx.coroutines.flow.Flow
 
-interface ItemsRepository {
+interface  ItemsRepository {
 
   suspend fun getData()
 
@@ -15,7 +15,7 @@ interface ItemsRepository {
 
   suspend fun findItemByDescription(searchText:String): ItemsModel
 
-  suspend fun favClicked(itemsModel: ItemsModel)
+  suspend fun favClicked(itemsModel: ItemsModel,isFavorite:Boolean)
 
   suspend fun getFavorites():List<FavoriteModel>
 }

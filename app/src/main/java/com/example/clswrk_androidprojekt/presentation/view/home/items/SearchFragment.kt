@@ -2,32 +2,36 @@ package com.example.clswrk_androidprojekt.presentation.view.home.items
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
 import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.databinding.FragmentSearchBinding
+import com.example.clswrk_androidprojekt.presentation.view.auth.auth.LoginViewModel
 import com.example.clswrk_androidprojekt.presentation.view.home.service.MusicPlayer
+import com.example.clswrk_androidprojekt.utils.App
+import com.example.clswrk_androidprojekt.utils.BaseFragment
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@AndroidEntryPoint
-class SearchFragment : Fragment() {
+
+class SearchFragment : BaseFragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding: FragmentSearchBinding get() = _binding!!
 
 
-    private val viewModel: SeaechViewModel by viewModels()
+
+    private val viewModel: SeaechViewModel by viewModels{viewModelFactory}
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,13 +42,9 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
-        //first Variant
 
-//        val btn = Button(context)
-//        btn.background = context?.getDrawable(R.drawable.chmonya_image)
-//        btn.text = context?.getString(R.string.image_view_clicked)
-//        binding.root.addView(btn)
 
 
         AnimationUtils.loadAnimation(binding.btStart.context, R.anim.rotate_anim).also {

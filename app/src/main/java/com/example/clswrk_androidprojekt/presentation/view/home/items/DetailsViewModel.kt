@@ -6,12 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.domain.auth.AuthInteractor
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+
 class DetailsViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 ) : ViewModel() {

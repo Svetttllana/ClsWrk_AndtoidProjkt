@@ -43,9 +43,11 @@ class ItemsViewHolder(
             itemsListener.onDeliteClicked(itemsModel.description)
         }
 
+        fav.isSelected = itemsModel.isFavorite
+
         fav.setOnClickListener {
             fav.isSelected = !it.isSelected
-            itemsListener.onFavClicked(itemsModel.description)
+            itemsListener.onFavClicked(itemsModel.description,it.isSelected)
 
         }
 
