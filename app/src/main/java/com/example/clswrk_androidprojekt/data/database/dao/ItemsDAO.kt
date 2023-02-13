@@ -31,7 +31,7 @@ interface ItemsDAO {
 
     @Query("UPDATE ItemsEntity SET isFavorite =:isFavorite WHERE description =:description ")
     fun addToFavorite(description: String,isFavorite:Boolean
-         )
+          )
 
 
     @Insert(onConflict = IGNORE) // игнорирует когда конфликт происходит(ignore items if same)
