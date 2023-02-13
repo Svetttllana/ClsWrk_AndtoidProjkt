@@ -11,19 +11,21 @@
     <EditText
 
         android:id="@+id/et_userLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_width="394dp"
+        android:layout_height="50dp"
         android:layout_marginTop="120dp"
+        android:background="@drawable/edittext_stroke_background"
         android:hint="@string/enter_your_login"
+        android:paddingStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_userPassword"
         android:layout_width="410dp"
-        android:layout_height="55dp"
-
+        android:layout_height="50dp"
+        android:paddingStart="20dp"
+        android:background="@drawable/edittext_stroke_background"
         android:layout_marginBottom="492dp"
         android:hint="@string/enter_your_password"
 
