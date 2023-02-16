@@ -2,19 +2,19 @@ package com.example.clswrk_androidprojekt.domain.items
 
 import com.example.clswrk_androidprojekt.domain.model.FavoriteModel
 import com.example.clswrk_androidprojekt.domain.model.ItemsModel
+import io.reactivex.Completable
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor (
-    private val itemsRepository: ItemsRepository)
-{
-   suspend fun getData(){
-        return   itemsRepository.getData()
+    private val itemsRepository: ItemsRepository){
+ fun getData():Completable{
+         return  itemsRepository.getData()
     }
 
-    suspend fun showData(): Flow<List<ItemsModel>> {
-
-        return  itemsRepository.showData()
+ fun showData(): Observable<List<ItemsModel>> {
+     return itemsRepository.showData()
     }
 
     suspend fun deliteItemByDescription(description: String){

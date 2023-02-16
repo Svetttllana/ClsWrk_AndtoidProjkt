@@ -66,20 +66,25 @@ class ItemsFragment : BaseFragment(), ItemsListener {
 //            }
 //        }
 
-        //sposob3
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
-        }
+//        //sposob3
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.getDataSimple()
+//        }
 
 
+viewModel.getData()
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.items.collect{flowList->
-                flowList.collect{list ->
-                    itemsAdapter.submitList(list)
-            }
-            }
-        }
+      viewModel.items.observe(viewLifecycleOwner){
+          itemsAdapter.submitList(it)
+      }
+
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.items.collect{flowList->
+//                flowList.collect{list ->
+//                    itemsAdapter.submitList(list)
+//            }
+//            }
+//        }
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
             Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
@@ -97,7 +102,7 @@ class ItemsFragment : BaseFragment(), ItemsListener {
                     bundle
                 )
 
-               // viewModel.userNavigated()
+                viewModel.userNavigated()
             }
 
             viewModel.error.observe(viewLifecycleOwner) {

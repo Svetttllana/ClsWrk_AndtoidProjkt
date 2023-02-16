@@ -28,6 +28,7 @@ abstract class ItemsDatabase:RoomDatabase() {
                     ItemsDatabase::class.java,
                     DATABASE_NAME
                 )
+                .allowMainThreadQueries()
                 .addMigrations(MIGRATION_3_TO_4)
                 .build()
                 .also { DB_INSTANCE = it }

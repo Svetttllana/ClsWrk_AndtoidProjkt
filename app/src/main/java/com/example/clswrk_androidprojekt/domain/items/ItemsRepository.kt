@@ -3,13 +3,15 @@ package com.example.clswrk_androidprojekt.domain.items
 import com.example.clswrk_androidprojekt.data.database.FavoritesEntity
 import com.example.clswrk_androidprojekt.domain.model.FavoriteModel
 import com.example.clswrk_androidprojekt.domain.model.ItemsModel
+import io.reactivex.Completable
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 interface  ItemsRepository {
 
-  suspend fun getData()
+ fun getData():Completable
 
-  suspend fun showData(): Flow<List<ItemsModel>>
+ fun showData():Observable<List<ItemsModel>>
 
   suspend fun deliteItemByDescription(description: String)
 

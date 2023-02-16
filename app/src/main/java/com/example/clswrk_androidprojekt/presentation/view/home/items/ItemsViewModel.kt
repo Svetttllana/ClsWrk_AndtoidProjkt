@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.domain.items.ItemsInteractor
 import com.example.clswrk_androidprojekt.domain.model.ItemsModel
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -17,18 +18,18 @@ class ItemsViewModel @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ) : ViewModel() {
 
-    val items = flow< Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData())} // когда видим emit значит от  произволит свою работу
+    // val items = flow< Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData())} // когда видим emit значит от  произволит свою работу
 //  у liveData тоже есть метод emit
 
 
     //#1
-    val getData = flow{emit(itemsInteractor.getData())}
+    val getData = flow { emit(itemsInteractor.getData()) }
 
     //#2
-   private val _trigger = MutableLiveData<Flow<Unit>>()
+    private val _trigger = MutableLiveData<Flow<Unit>>()
     val trigger = _trigger
 
-   // #3
+    // #3
 
     private val _msg = MutableLiveData<Int>()
     val msg: LiveData<Int> = _msg
@@ -40,15 +41,29 @@ class ItemsViewModel @Inject constructor(
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
 
+    private val _items = MutableLiveData<List<ItemsModel>>()
+    val items: LiveData<List<ItemsModel>> = _items
+
+private val compositeDisposable= CompositeDisposable()
+
+    fun getData() {
+        val getData = itemsInteractor.getData().subscribe({
+
+        },{
+
+        })
+        compositeDisposable.add(getData)
+        val showData = itemsInteractor.showData().subscribe({
+            _items.value = it
+        },{
+            _error.value = "Erroroccured while showing data"
+        })
+        compositeDisposable.add(showData)
 
 
-    fun getData(){
-        viewModelScope.launch {
-            _trigger.value = flow {emit(itemsInteractor.getData())}
-        }
     }
 
-    suspend fun getDataSimple(){
+    suspend fun getDataSimple() {
         itemsInteractor.getData()
     }
 
@@ -82,15 +97,17 @@ class ItemsViewModel @Inject constructor(
         }
     }
 
-    fun onFavClicked(description: String,isFavorite:Boolean) {
+    fun onFavClicked(description: String, isFavorite: Boolean) {
         viewModelScope.launch {
 
-            itemsInteractor.onFavClicked(description,isFavorite)
-
-
+            itemsInteractor.onFavClicked(description, isFavorite)
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+    compositeDisposable.dispose()
+    }
 
 }
 
