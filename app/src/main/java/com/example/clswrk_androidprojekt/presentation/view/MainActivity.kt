@@ -1,7 +1,11 @@
 package com.example.clswrk_androidprojekt.presentation.view
 
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
@@ -15,7 +19,14 @@ import com.example.clswrk_androidprojekt.R
 import com.example.clswrk_androidprojekt.databinding.ActivityMainBinding
 import com.example.clswrk_androidprojekt.presentation.view.auth.auth.LoginViewModel
 import com.example.clswrk_androidprojekt.utils.App
+import com.example.clswrk_androidprojekt.utils.permission.PermissionUtils
 import javax.inject.Inject
+
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+
 
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
@@ -107,7 +118,78 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        when {
+            PermissionUtils.checkAccessFineLocationGranted(this) -> {
+                when {
+                    PermissionUtils.isLocationEnabled(this) -> {
+                        setLocationListner()
+                    }
+                    else -> {
+                        PermissionUtils.showGPSNotEnabledDialog(this)
+                    }
+                }
+            }
+            else -> {
+                PermissionUtils.askAccessFineLocationPermission(
+                    this,
+                    42
+                )
+            }
+        }
+    }
+
+
+    private fun setLocationListner() {
+        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        val locationRequest = LocationRequest().setInterval(2000).setFastestInterval(2000)
+            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        fusedLocationProviderClient.requestLocationUpdates(
+            locationRequest,
+            object : LocationCallback() {
+                override fun onLocationResult(locationResult: LocationResult) {
+                    super.onLocationResult(locationResult)
+                    for (location in locationResult.locations) {
+                        Log.w("location", "${location.latitude} ${location.longitude}")
+                    }
+                }
+            },
+            Looper.myLooper()
+        )
+    }
+
+
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            42 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    when {
+                        PermissionUtils.isLocationEnabled(this) -> {
+                            setLocationListner()
+                        }
+                        else -> {
+                            PermissionUtils.showGPSNotEnabledDialog(this)
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "not granded permission", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
 }
+
+
+
+
 
 

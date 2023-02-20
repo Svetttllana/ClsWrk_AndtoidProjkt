@@ -85,4 +85,8 @@ dependencies {
     // animation
     implementation 'com.github.AtifSayings:Animatoo:1.0.1'
 
+    // location фьюз локейшн провайдер
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+
 }

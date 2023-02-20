@@ -1,19 +1,21 @@
 package com.example.clswrk_androidprojekt.presentation.view.home.items
 
+import android.content.Context.LOCATION_SERVICE
+import android.location.LocationListener
+import android.location.LocationManager
+import android.location.LocationManager.GPS_PROVIDER
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clswrk_androidprojekt.databinding.FragmentFavoritesBinding
-import com.example.clswrk_androidprojekt.presentation.view.auth.auth.LoginViewModel
 import com.example.clswrk_androidprojekt.presentation.view.home.items.adapter.FavoritesAdapter
 import com.example.clswrk_androidprojekt.utils.App
 import com.example.clswrk_androidprojekt.utils.BaseFragment
-import javax.inject.Inject
 
 
 class FavoritesFragment : BaseFragment() {
@@ -24,7 +26,7 @@ class FavoritesFragment : BaseFragment() {
     private lateinit var favAdapter: FavoritesAdapter
 
 
-    private val viewModel: FavoritesViewModel by viewModels{viewModelFactory}
+    private val viewModel: FavoritesViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +53,32 @@ class FavoritesFragment : BaseFragment() {
             favAdapter.submitList(it)
         }
 
+
+        var locationManager: LocationManager? = null
+
+        locationManager = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager?
+
+        try {
+            locationManager?.requestLocationUpdates(
+                GPS_PROVIDER,
+                0L,
+                0.0f,
+                locationListener
+            )
+
+        } catch (e: Exception) {
+            Log.w("error", "while asseting location")
+        }
     }
 
-}
+        private val locationListener = LocationListener {
+            Toast.makeText(
+                requireContext(),
+                "long:${it.longitude}lat: ${it.latitude}",
+                Toast.LENGTH_SHORT
+
+            ).show()
+        }
+
+    }
+
