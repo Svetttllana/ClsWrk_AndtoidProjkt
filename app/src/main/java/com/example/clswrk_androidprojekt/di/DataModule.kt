@@ -48,9 +48,6 @@ abstract class DataModule {
                 context.getSharedPreferences(SP_KEY, MODE_PRIVATE)
             )
 
-
-
-
         }
 
         @Named("FIRST")
