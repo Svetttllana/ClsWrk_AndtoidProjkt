@@ -9,7 +9,7 @@ interface  ItemsRepository {
 
   suspend fun getData()
 
-  suspend fun showData(): Flow<List<ItemsModel>>
+  suspend fun showData(): List<ItemsModel>
 
   suspend fun deliteItemByDescription(description: String)
 

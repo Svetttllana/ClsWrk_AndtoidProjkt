@@ -52,34 +52,16 @@ class ItemsFragment : BaseFragment(), ItemsListener {
         recyclerView.adapter = itemsAdapter
 
 
-
-        //sposob1
-//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//            viewModel.getData.collect()
-//        }
-
-        //sposob2
-//        viewModel.getData()
-//        viewModel.trigger.observe(viewLifecycleOwner){
-//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//                it.collect()
-//            }
-//        }
-
         //sposob3
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.getDataSimple()
         }
 
 
-
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.items.collect{flowList->
-                flowList.collect{list ->
-                    itemsAdapter.submitList(list)
-            }
-            }
-        }
+viewModel.showData()
+viewModel.items.observe(viewLifecycleOwner){
+    listItems -> itemsAdapter.submitList(listItems)
+}
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
             Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()

@@ -28,34 +28,33 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun getData() {
 
         return withContext(Dispatchers.IO) {
-            itemsDAO.doesItemsEntityExist().collect {
-                if (!it) {
-                    Log.w("getData", "data not exists")
-                    val response = apiService.getData()
-                    Log.w("Data", response.body()?.sampleList.toString())
-                    response.body()?.sampleList?.let { sample ->
-                        sample.map {
-                            val itemsEntity =
-                                ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
-                            itemsDAO.insertItemsEntity(itemsEntity)
+            val itemsExists = itemsDAO.doesItemsEntityExist()
+            if (!itemsExists) {
+                Log.w("getData", "data not exists")
+                val response = apiService.getData()
+                Log.w("Data", response.body()?.sampleList.toString())
+                response.body()?.sampleList?.let { sample ->
+                    sample.map {
+                        val itemsEntity =
+                            ItemsEntity(Random().nextInt(), it.description, it.imageUrl)
+                        itemsDAO.insertItemsEntity(itemsEntity)
 
-                        }
                     }
                 }
             }
+
         }
     }
 
-    override suspend fun showData(): Flow<List<ItemsModel>> {
+    override suspend fun showData(): List<ItemsModel> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.getItemsEntities()
-            itemsEntity.map { itemsList ->
-                itemsList.map { item ->
-                    ItemsModel(item.id,item.description, item.imageUrl, item.isFavorite ?: false)
-                }
+            itemsEntity.map { item ->
+                ItemsModel(item.id, item.description, item.imageUrl, item.isFavorite ?: false)
             }
         }
     }
+
 
     override suspend fun deliteItemByDescription(description: String) {
         withContext(Dispatchers.IO) {
@@ -66,7 +65,12 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun findItemByDescription(searchText: String): ItemsModel {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDAO.findItementityByDescription(searchText)
-            ItemsModel(itemsEntity.id,itemsEntity.description, itemsEntity.imageUrl,itemsEntity.isFavorite ?: false)
+            ItemsModel(
+                itemsEntity.id,
+                itemsEntity.description,
+                itemsEntity.imageUrl,
+                itemsEntity.isFavorite ?: false
+            )
         }
     }
 

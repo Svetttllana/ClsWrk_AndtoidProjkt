@@ -17,7 +17,7 @@ class ItemsViewModel @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ) : ViewModel() {
 
-    val items = flow< Flow<List<ItemsModel>>>{ emit(itemsInteractor.showData())} // когда видим emit значит от  произволит свою работу
+
 //  у liveData тоже есть метод emit
 
 
@@ -39,12 +39,25 @@ class ItemsViewModel @Inject constructor(
     private val _bundle = MutableLiveData<NavigateWithBundle?>()
     val bundle: LiveData<NavigateWithBundle?> = _bundle
 
-
+    private val _items = MutableLiveData<List<ItemsModel>>()
+    val items: LiveData<List<ItemsModel>> = _items
 
 
     fun getData(){
         viewModelScope.launch {
             _trigger.value = flow {emit(itemsInteractor.getData())}
+        }
+    }
+
+
+    fun showData(){
+        viewModelScope.launch {
+            try {
+                itemsInteractor.getData()
+                _items.value=itemsInteractor.showData()
+            }catch (e:Exception){
+                _error.value=e.message
+            }
         }
     }
 
